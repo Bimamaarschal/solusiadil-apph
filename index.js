@@ -5,6 +5,7 @@ const registerRoutes = require('./routes/registerRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const routeRoutes = require('./routes/routeRoutes');
 const path = require('path'); 
+const router = express.Router();
 
 const app = express();
 
@@ -12,7 +13,9 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public', 'login.html'));
+});
 
 
 app.use(bodyParser.json());
