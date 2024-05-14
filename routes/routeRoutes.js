@@ -12,21 +12,16 @@ function checkLoggedIn(req, res, next) {
 }
 
 
-
-router.get('/tentangkami', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'tentangkami.html'));
-});
-
 router.get('/blog',  (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'blog.html'));
 });
 
-router.get('/konsultasi',  (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'konsultasi.html'));
+router.get('/ajuan',  (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'ajuan.html'));
 });
 
-router.get('/layanan', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'layanan.html'));
+router.get('/jdih', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'jdih.html'));
 });
 
 router.get('/kontak', (req, res) => {
@@ -34,12 +29,9 @@ router.get('/kontak', (req, res) => {
 });
 
 
-router.get('/faq', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'faq.html'));
+router.get('/aturan', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public', 'aturan.html'));
 });
 
-router.get('/gabung', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'gabung.html'));
-});
 
 module.exports = router;

@@ -97,12 +97,11 @@
 							<div class="main-menu">
 								<nav class="navigation">
 									<ul class="nav menu">
-										<li><a href="/beranda">Rumah </a></li>
-										<li><a href="konsultasi">Konsultasi </a></li>
-										<li class="active"><a href="layanan">Layanan </a></li>
-										<li><a href="tentangkami">Tentang Kami</a></li>
-										<li><a href="blog">Blog </a></li>
-										<li><a href="gabung">Bergabung</a></li>
+										<li><a href="beranda">Index</a></li>
+										<li><a href="ajuan">Ajuan Konsultasi</a></li>
+										<li><a href="blog">Penulisan Blog</a></li>
+										<li class="active"><a href="jdih">JDIH</a></li>
+										<li><a href="aturan">Aturan APPH</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -115,147 +114,93 @@
 	</header>
 	<!-- Header Area - Akhir -->
 
-	<!-- TextAwal - Awal-->
-	<div class="textawal overlay">
+
+	<!-- Single News -->
+	<section class="news-single section" style="padding-top: 5px;">
 		<div class="container">
-			<div class="textawal-inner">
-				<div class="row">
-					<div class="col-12">
-						<h2>Pilihan Layanan</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- TextAwal - Akhir-->
-	
-	<!-- Fitur - Awal -->
-	<section class="solusiadil-fitur" style="padding-top: 350px; padding-bottom: 350px;">
-		<div class="container">
-			<div class="solusiadil-fitur-inner">
-				<div class="row" style="padding-bottom: 10px;">
-					<div class="col-lg-4 col-md-6 col-12 ">
-						<div class="solusiadil-fitur-single first">
-							<div class="inner">
-								<div class="icon">
-									<i class="fa-solid fa-scale-balanced"></i>
-								</div>
-								<div class="single-content">
-									<span>Solusi Adil</span>
-									<h4>Konsultasi Hukum Online</h4>
-									<p>Konsultasi Hukum Online: Solusi cepat dan akurat untuk setiap permasalahan hukum
-										Anda.</p>
-									<a href="#">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-12">
-						<div class="solusiadil-fitur-single middle">
-							<div class="inner">
-								<div class="icon">
-									<i class="fa-solid fa-gavel"></i>
-								</div>
-								<div class="single-content">
-									<span>Solusi Adil</span>
-									<h4>Cari Panduan Hukum</h4>
-									<p>Temukan Kepastian Hukum Anda: Cari Panduan Hukum yang Jelas dan Terpercaya di
-										Sini.</p>
-									<a href="#">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-12 col-12">
-						<div class="solusiadil-fitur-single last">
-							<div class="inner">
-								<div class="icon">
-									<i class="fa-solid fa-folder-open"></i>
-								</div>
-								<div class="single-content">
-									<span>Solusi Adil</span>
-									<h4>JDIH</h4>
-									<p>Jelajahi keadilan dan informasi hukum melalui JDIH, pintu akses utama untuk
-										pemahaman dan kepatuhan hukum.</p>
-									<a href="#">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
-								</div>
+			<div class="row">
+				<div class="col-lg-8 col-12">
+					<div class="row">
+						<div class="col-12">
+							<div class="comments-form">
+								<h2>Kosultasi Perkara Hukum</h2>
+								<!-- Contact Form -->
+								<form class="form" method="post" action="mail/mail.php">
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group">
+												<i class="fa fa-user"></i>
+												<input type="text" name="first-name" placeholder="Nama Lengkap"
+													required="required">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group">
+												<i class="fa fa-envelope"></i>
+												<input type="email" name="email" placeholder="Your Email"
+													required="required">
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="form-group">
+												<i class="fa-solid fa-scale-balanced"></i>
+												<input type="text" name="last-name" placeholder=" Pengajuan Pertanyaan"
+													required="required">
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="form-group message">
+												<i class="fa fa-pencil"></i>
+												<textarea name="message" rows="7"
+													placeholder="keterangan Lengkap"></textarea>
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="form-group button">
+												<button type="submit" class="btn primary"><i
+														class="fa fa-send"></i>Ajukan Konsultasi</button>
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-4 col-md-6 col-12 ">
-						<div class="solusiadil-fitur-single first">
-							<div class="inner">
-								<div class="icon">
-									<i class="fa-solid fa-scale-balanced"></i>
+
+				<div class="col-lg-4 col-12">
+					<div class="main-sidebar">
+						<div class="single-widget recent-post">
+							<h3 class="title">Konsultasi Baru</h3>
+							<div class="single-post">
+								<div class="image">
+									<img src="img/favicon.png" alt="#">
 								</div>
-								<div class="single-content">
-									<span>Solusi Adil</span>
-									<h4>Konsultasi Hukum Online</h4>
-									<p>Konsultasi Hukum Online: Solusi cepat dan akurat untuk setiap permasalahan hukum
-										Anda.</p>
-									<a href="#">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-12">
-						<div class="solusiadil-fitur-single middle">
-							<div class="inner">
-								<div class="icon">
-									<i class="fa-solid fa-gavel"></i>
-								</div>
-								<div class="single-content">
-									<span>Solusi Adil</span>
-									<h4>Cari Panduan Hukum</h4>
-									<p>Temukan Kepastian Hukum Anda: Cari Panduan Hukum yang Jelas dan Terpercaya di
-										Sini.</p>
-									<a href="#">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-12 col-12">
-						<div class="solusiadil-fitur-single last">
-							<div class="inner">
-								<div class="icon">
-									<i class="fa-solid fa-folder-open"></i>
-								</div>
-								<div class="single-content">
-									<span>Solusi Adil</span>
-									<h4>JDIH</h4>
-									<p>Jelajahi keadilan dan informasi hukum melalui JDIH, pintu akses utama untuk
-										pemahaman dan kepatuhan hukum.</p>
-									<a href="#">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
+								<div class="content">
+									<h5><a href="#">Judul.</a></h5>
+									<ul class="comment">
+										<li><i class="fa fa-calendar" aria-hidden="true"></i>Maret 11, 2024</li>
+										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>-</li>
+									</ul>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</section>
-	<!-- Fitur - Akhir -->
+	<!--/ End Single News -->
+
 	<!-- Bergabung - Awal -->
 	<section id="bergabung" class="solusiadil-bergabung section">
 		<div class="container">
 			<div class="row ">
 				<div class="col-lg-6  col-12">
 					<div class="subscribe-text ">
-						<h6>Bergabung di Discord</h6>
-						<p class="">Bergabunglah di Discord Solusi Adil untuk mendapatkan informasi eksklusif terkait
-							hukum dan interaksi langsung dengan ahli.</p>
-					</div>
-				</div>
-				<div class="col-lg-6  col-12">
-					<div class="subscribe-form ">
-						<form action="mail/mail.php" method="get" target="_blank" class="solusiadil-bergabung-inner">
-							<input name="EMAIL" placeholder="Isi Email Anda" class="common-input"
-								onfocus="this.placeholder = ''" onblur="this.placeholder = 'Isi Email Anda'" required=""
-								type="email">
-							<button class="btn">Kirim Permintaan</button>
-						</form>
+						<h6>Pemberitahuan</h6>
+						<p class="">...</p>
 					</div>
 				</div>
 			</div>
@@ -340,7 +285,6 @@
 	<!-- Footer - Akhir -->
 
 	<!-- Solusi Adil - JS Library -->
-
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.0.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
