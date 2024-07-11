@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -70,41 +69,45 @@
 	<section class="appointment">
 		<div class="container" style="padding-bottom: 150px;">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 col-md-12 col-12">
 					<div class="section-title">
-						<h2>Masuk</h2>
-						<i class="fa-solid fa-key"></i>
-						<p>Solusi Adil - Portal APPH</p>
+						<h2> <i class="fa-solid fa-key"></i> Portal Profesi Penegak Hukum</h2>
+						<p style="font-size: 13px;">Maaf, Anda belum masuk Solusi Adil <br> Silahkan masuk untuk memulai
+							semua fitur APPH Solusi Adil</p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-12">
+				<div class="col-lg-12 col-md-6 col-6">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-12">
 							<form class="form" action="/login" method="POST">
 								<div class="row">
-									<div class="col-lg-6 col-md-6 col-12">
+									<div class="col-lg-12 col-md-6 col-12">
 										<div class="form-group">
-											<small>ID APPH</small>
-											<input id="nik" name="nik" type="text">
+											<small>SOLUSI ADIL APPH ID - 9 Digit Angka Saat Anda Terverifikasi Sebagai APPH</small>
+											<input id="id_apph" name="id_apph" type="number"
+												oninput="validateLength(this)">
+											<small id="error-message" style="color:red; display:none;">ID hanya terdiri
+												dari 9 angka acak</small>
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-6 col-12">
+									<div class="col-lg-12 col-md-6 col-12">
 										<div class="form-group">
-											<small>Password</small>
+											<small>Sandi</small>
 											<input id="password" name="password" type="password">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-lg-7 col-md-8 col-12">
-										<p>ID APPH Dapat di ketahui pada pendataan di Solusi Adil - POSBAKUM Bandung </a></p>
+										<p style="font-size: 12px;">Apakah Anda lupa kata sandi ? <a href="register"
+												style="background: black; color: white; padding: 10px;">Solusi</a></p>
 									</div>
 									<div class="col-lg-5 col-md-4 col-12">
 										<div class="form-group text-lg-right text-md-right text-center">
-											<div class="button">
-												<button type="submit" class="btn primary" value="Login">Masuk</button>
+											<div class="get-quote">
+												<button type="submit" class="btn" value="Login">Masuk</button>
 											</div>
 										</div>
 									</div>
@@ -115,7 +118,6 @@
 				</div>
 	</section>
 	<!-- Daftar - Akhir -->
-
 	<!-- Footer - Awal -->
 	<footer id="akhir" class="footer ">
 		<div class="copyright" style="padding-bottom: 72px;">

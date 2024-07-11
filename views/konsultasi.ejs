@@ -5,9 +5,9 @@
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="Site keywords here">
+	<meta name="keywords" content="Solusi Adil">
 	<meta name="description" content="">
-	<meta name='copyright' content=''>
+	<meta name='copyright' content='bimamaarschal'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Judul -->
 	<title>Solusi Adil</title>
@@ -30,30 +30,25 @@
 	<link rel="stylesheet" href="css/normalize.css">
 	<link rel="stylesheet" href="css/owl-carousel.css">
 	<link rel="stylesheet" href="css/responsive.css">
+	<style>
+		.btn-jawab {
+			background-color: rgb(255, 255, 138);
+			color: black;
+		}
+
+		.btn-lihat {
+			background-color: rgb(90, 212, 90);
+			color: white;
+		}
+
+		.btn-selesai {
+			background-color: rgb(78, 78, 218);
+			color: white;
+		}
+	</style>
 </head>
 
 <body>
-
-	<!-- Preloader - Awal -->
-	<!-- <div class="solusiadil-preloader">
-		<div class="loader">
-			<div class="loader-outter"></div>
-			<div class="loader-inner"></div>
-		</div>
-	</div> -->
-	<!-- Preloader - Akhir -->
-
-	<!-- Akses Cepat - Awal -->
-	<!-- <ul class="solusiadil-aksescepat">
-		<a class="get-aksescepat" href="#"><i class="fa fa-commenting"></i></a>
-		<li class="judul-aksescepat">Layanan Cepat</li>
-		<li>Langsung terhubung dengan layanan kosultasi - SOLUSI ADIL</li>
-		<div class="button">
-			<a href=""
-				target="_blank" class="btn">Konsultasi Hukum</a>
-		</div>
-	</ul> -->
-	<!-- Akses Cepat - Akhir -->
 
 	<!-- Header Area - Awal -->
 	<header class="header">
@@ -75,6 +70,8 @@
 						<ul class="solusiadil-top-contact">
 							<li><i class="fa-brands fa-whatsapp"></i>+62 888 0188 9923</li>
 							<li><i class="fa fa-envelope"></i><a href="mailto:-">solusiadil.id@gmail.com</a></li>
+							<li><a href="/logout" style="font-size: 15px;"><i
+										class="fa-solid fa-right-from-bracket"></i>Keluar</a></li>
 						</ul>
 					</div>
 					<!-- Kontak - Akhir-->
@@ -97,11 +94,11 @@
 							<div class="main-menu">
 								<nav class="navigation">
 									<ul class="nav menu">
-										<li><a href="beranda">Index</a></li>
-										<li><a href="ajuan">Ajuan Konsultasi</a></li>
-										<li><a href="blog">Penulisan Blog</a></li>
-										<li class="active"><a href="jdih">JDIH</a></li>
-										<li><a href="aturan">Aturan APPH</a></li>
+										<li><a href="beranda">Dashboard</a></li>
+										<li class="active"><a href="konsultasi">Konsultasi </a></li>
+										<li><a href="layanan">Blog </a></li>
+										<li><a href="tentangkami">SOP APPH</a></li>
+										<li><a href="blog">Profil</a></li>
 									</ul>
 								</nav>
 							</div>
@@ -114,55 +111,72 @@
 	</header>
 	<!-- Header Area - Akhir -->
 
-
 	<!-- Single News -->
 	<section class="news-single section" style="padding-top: 5px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-12">
+				<div class="col-lg-12 col-2">
 					<div class="row">
 						<div class="col-12">
 							<div class="comments-form">
-								<h2>Kosultasi Perkara Hukum</h2>
-								<!-- Contact Form -->
-								<form class="form" method="post" action="mail/mail.php">
-									<div class="row">
-										<div class="col-lg-6 col-md-6 col-12">
-											<div class="form-group">
-												<i class="fa fa-user"></i>
-												<input type="text" name="first-name" placeholder="Nama Lengkap"
-													required="required">
-											</div>
-										</div>
-										<div class="col-lg-6 col-md-6 col-12">
-											<div class="form-group">
-												<i class="fa fa-envelope"></i>
-												<input type="email" name="email" placeholder="Your Email"
-													required="required">
-											</div>
-										</div>
-										<div class="col-12">
-											<div class="form-group">
-												<i class="fa-solid fa-scale-balanced"></i>
-												<input type="text" name="last-name" placeholder=" Pengajuan Pertanyaan"
-													required="required">
-											</div>
-										</div>
-										<div class="col-12">
-											<div class="form-group message">
-												<i class="fa fa-pencil"></i>
-												<textarea name="message" rows="7"
-													placeholder="keterangan Lengkap"></textarea>
-											</div>
-										</div>
-										<div class="col-12">
-											<div class="form-group button">
-												<button type="submit" class="btn primary"><i
-														class="fa fa-send"></i>Ajukan Konsultasi</button>
-											</div>
-										</div>
-									</div>
-								</form>
+								<h1 style="font-size: 18px;"><i class="fa-solid fa-compass"></i> Data Konsultasi</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-6">
+					<div class="row">
+						<div class="col-12">
+							<div class="comments-form">
+								<% if (konsultasiData.length> 0) { %>
+									<table>
+										<thead>
+											<tr>
+												<th>ID Konsultasi</th>
+												<th>Status</th>
+												<th>Nama Masyarakat</th>
+												<th>Tanggal</th>
+												<th>APPH</th>
+												<th>Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% konsultasiData.forEach(konsultasi=> { %>
+												<tr>
+													<td>
+														<%= konsultasi.id_konsultasi %>
+													</td>
+													<td>
+														<%= konsultasi.status %>
+													</td>
+													<td>
+														<%= konsultasi.nama_mast %>
+													</td>
+													<td>
+														<%= konsultasi.tanggal %>
+													</td>
+													<td>
+														<%= konsultasi.id_apph %>
+													</td>
+													<td>
+														<form action="/konsultasidt" method="get">
+															<input type="hidden" name="id" value="<%= konsultasi.id_konsultasi %>">
+															<% if (konsultasi.status === 'Menunggu') { %>
+															  <button type="submit" class="btn-jawab">Jawab</button>
+															<% } else if (konsultasi.status === 'Proses') { %>
+															  <button type="submit" class="btn-lihat">Lihat</button>
+															<% } else if (konsultasi.status === 'Selesai') { %>
+															  <button type="submit" class="btn-selesai">Selesai</button>
+															<% } %>
+														  </form>
+													</td>
+												</tr>
+												<% }); %>
+										</tbody>
+									</table>
+									<% } else { %>
+										<p>Tidak ada data konsultasi yang tersedia.</p>
+										<% } %>
 							</div>
 						</div>
 					</div>
@@ -171,52 +185,39 @@
 				<div class="col-lg-4 col-12">
 					<div class="main-sidebar">
 						<div class="single-widget recent-post">
-							<h3 class="title">Konsultasi Baru</h3>
-							<div class="single-post">
-								<div class="image">
-									<img src="img/favicon.png" alt="#">
-								</div>
-								<div class="content">
-									<h5><a href="#">Judul.</a></h5>
-									<ul class="comment">
-										<li><i class="fa fa-calendar" aria-hidden="true"></i>Maret 11, 2024</li>
-										<li><i class="fa fa-commenting-o" aria-hidden="true"></i>-</li>
-									</ul>
-								</div>
+							<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Data Konsultasi</h3>
+							<br>
+							<div class="content">
+								<ul class="comment" style="font-size: 12px;">
+									<li><i class="fa-solid fa-address-card" aria-hidden="true"></i>
+										Jumlah Konsultasi Proses
+									</li>
+									<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+										Jumlah Konsultasi Selesai
+									</li>
+									<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+										Jumlah Konsultasi Selesai
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>
 	<!--/ End Single News -->
 
-	<!-- Bergabung - Awal -->
-	<section id="bergabung" class="solusiadil-bergabung section">
-		<div class="container">
-			<div class="row ">
-				<div class="col-lg-6  col-12">
-					<div class="subscribe-text ">
-						<h6>Pemberitahuan</h6>
-						<p class="">...</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Bergabung - Akhir -->
-
 	<!-- Footer - Awal -->
-	<footer id="akhir" class="footer ">
+	<footer id="akhir" class="footer " style="padding-top: 100px;">
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3 col-md-6 col-12">
+					<div class="col-lg-4 col-md-6 col-12">
 						<div class="single-footer">
-							<h2>Solusi Adil</h2>
-							<p>Solusi adil memberikan keadilan sejati, menyelaraskan hak dan kewajiban untuk mewujudkan
+							<h2 style="font-size: 22px;">Solusi Adil</h2>
+							<p style="font-size: 12px;">Solusi adil memberikan keadilan sejati, menyelaraskan hak dan
+								kewajiban untuk mewujudkan
 								penyelesaian perkara hukum yang berkeadilan.</p>
 							<ul class="social">
 								<li><a href="https://www.facebook.com/solusiadil/"><i class="icofont-facebook"></i></a>
@@ -232,19 +233,24 @@
 					</div>
 					<div class="col-lg-3 col-md-6 col-12">
 						<div class="single-footer f-link">
-							<h2>Akses</h2>
+							<h2>Akses Cepat</h2>
 							<div class="row">
 								<div class="col-lg-6 col-md-6 col-12">
 									<ul>
-										<li><a href="index"><i class="fa fa-caret-right" aria-hidden="true"></i> Solusi
+										<li><a href="/tentangkami"><i class="fa fa-caret-right" aria-hidden="true"></i>
+												Solusi
 												Adil
 											</a></li>
-										<li><a href="layanan"><i class="fa fa-caret-right" aria-hidden="true"></i>
+										<li><a href="/layanan"><i class="fa fa-caret-right" aria-hidden="true"></i>
 												Pelayanan
 											</a></li>
-										<li><a href="faq"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQ </a>
+										<li><a href="/faq"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQ </a>
 										</li>
-										<li><a href="blog"><i class="fa fa-caret-right" aria-hidden="true"></i> Blog
+										<li><a href="/blog"><i class="fa fa-caret-right" aria-hidden="true"></i> Blog
+											</a>
+										</li>
+										<li><a href="/kontak"><i class="fa fa-caret-right" aria-hidden="true"></i>
+												Kontak
 											</a>
 										</li>
 									</ul>
@@ -255,14 +261,9 @@
 					<div class="col-lg-3 col-md-6 col-12">
 						<div class="single-footer">
 							<h2>Keterangan</h2>
-							<p> Website Solusi Adil di buat untuk keperluan Skripsi dan Sistem pelayanan yang akan
+							<p style="font-size: 12px;"> Website Solusi Adil di buat untuk keperluan Skripsi dan Sistem
+								pelayanan yang akan
 								digunakan di lingkup Kota Bandung </p>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Penutup</h2>
-							<p>Dalam Proses Pengembangan </p>
 						</div>
 					</div>
 				</div>
@@ -273,7 +274,7 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-12">
 						<div class="copyright-content">
-							<p>© Copyright 2024 | Di Rancang dan Di Buat oleh <a
+							<p style="font-size: 13px;">© Copyright 2024 | Di Rancang dan Di Buat oleh <a
 									href="https://www.linkedin.com/in/bimamaarschal/" target="_blank">Bima
 									Maarschal</a> </p>
 						</div>
@@ -305,7 +306,6 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-
 </body>
 
 </html>

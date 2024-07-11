@@ -1,23 +1,14 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const path = require('path');
-const loginController = require('../controllers/loginController');
-const berandaController = require('../controllers/berandaController');
+const loginController = require("../controllers/loginController");
+const cekLogin = require("../middlewares/cekLogin");
 
-function checkLoggedIn(req, res, next) {
-    if (req.session.user) {
-        res.redirect('/beranda');
-    } else {
-        next();
-    }
-}
-
-router.get('/masuk',  checkLoggedIn, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'login.html'));
+router.get("/masuk", cekLogin, (req, res) => {
+  const { authError } = req;
+  res.render("masuk", { authError });
 });
 
-router.post('/login', loginController.loginUser);
-router.get('/logout', loginController.logoutUser);
-router.get('/beranda', berandaController.getBeranda);
+router.post("/login", loginController.loginApph);
+router.get("/logout", loginController.logoutApph);
 
 module.exports = router;

@@ -1,37 +1,42 @@
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const path = require('path');
+const berandaController = require("../controllers/berandaController");
+const cekBeranda = require("../middlewares/cekBeranda");
+const cekLoginMasuk = require("../middlewares/cekLoginMasuk");
 
-function checkLoggedIn(req, res, next) {
-    if (req.session.user) {
-        res.redirect('/beranda');
-    } else {
-        next();
-    }
-}
+router.get("/beranda", cekBeranda, berandaController.getBeranda);
 
 
-router.get('/blog',  (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'blog.html'));
+router.get("/tentangkami", (req, res) => {
+  res.render("tentangkami");
 });
 
-router.get('/ajuan',  (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'ajuan.html'));
+router.get("/blog", cekLoginMasuk, (req, res) => {
+  res.render("blog");
 });
 
-router.get('/jdih', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'jdih.html'));
+router.get("/layanan", cekLoginMasuk, (req, res) => {
+  res.render("layanan");
 });
 
-router.get('/kontak', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'kontak.html'));
+router.get("/kontak", (req, res) => {
+  res.render("kontak");
 });
 
-
-router.get('/aturan', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'aturan.html'));
+router.get("/faq", (req, res) => {
+  res.render("faq");
 });
 
+router.get("/gabung", cekLoginMasuk, (req, res) => {
+  res.render("gabung");
+});
+
+router.get("/jdih", cekLoginMasuk, (req, res) => {
+  res.render("jdih");
+});
+
+router.get("/panduan", cekLoginMasuk, (req, res) => {
+  res.render("panduan");
+});
 
 module.exports = router;
