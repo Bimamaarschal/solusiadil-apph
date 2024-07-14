@@ -16,14 +16,14 @@ exports.getKonsultasi = async (req, res) => {
   exports.getDetailKonsultasi = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
-      const { id_apph, nama } = req.apph;
+      const { id_apph, nama_apph } = req.apph;
       const response = await axios.get(`https://solusiadil-api.vercel.app/konsultasi/idkonsultasi/${id_konsultasi}`);
       const konsultasiData = response.data;
       const formattedKonsultasi = Object.values(konsultasiData)[0];
       if (!formattedKonsultasi) {
         throw new Error('Data konsultasi tidak ditemukan');
       }
-      res.render('editkonsultasi', { konsultasi: formattedKonsultasi, id_apph, nama });
+      res.render('editkonsultasi', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
   
     } catch (error) {
       console.error(error);
@@ -35,13 +35,25 @@ exports.getKonsultasi = async (req, res) => {
     try {
       const konsultasiId = req.body.id_konsultasi;
       const updatedData = {
-        status: req.body.status,
+        id_apph: req.body.id_apph,
+        id_konsultasi: req.body.id_konsultasi,
+        id_masyarakat: req.body.id_masyarakat,
+        jawaban: req.body.jawaban,
+        judul: req.body.judul,
+        keterangan: req.body.keterangan,
+        lanjutan1: "Belum Tersedia",
+        media: "Belum Tersedia",
+        nama_apph: req.body.nama_apph,
         nama_mast: req.body.nama_mast,
+        pertanyaan: req.body.pertanyaan,
+        referensi: req.body.referensi,
+        status:  "Penaganan",
         tanggal: req.body.tanggal,
+        undangundang: req.body.undangundang,
+        wilayahhukum: req.body.wilayahhukum,
       };
   
-      await axios.put(`https://solusiadil-api.vercel.app/apph/${konsultasiId}`, updatedData);
-  
+      await axios.put(`https://solusiadil-api.vercel.app/konsultasi/${konsultasiId}`, updatedData);
       res.redirect('/konsultasi');
     } catch (error) {
       console.error('Error updating konsultasi:', error);

@@ -29,7 +29,7 @@ exports.loginApph = async (req, res) => {
 
       const token = jwt.sign(
         {
-          doc_pendukung: apphData.doc_pendukung,
+          nama_apph: apphData.nama_apph,
           id_apph: apphData.id_apph,
           nik: apphData.nik
         },
