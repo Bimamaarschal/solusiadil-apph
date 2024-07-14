@@ -47,7 +47,7 @@ exports.getKonsultasi = async (req, res) => {
         nama_mast: req.body.nama_mast,
         pertanyaan: req.body.pertanyaan,
         referensi: req.body.referensi,
-        status:  "Penaganan",
+        status:  "Diproses",
         tanggal: req.body.tanggal,
         undangundang: req.body.undangundang,
         wilayahhukum: req.body.wilayahhukum,
