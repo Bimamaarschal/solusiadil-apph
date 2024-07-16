@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
       case "menunggu":
           statusInput.classList.add("bg-warning");
           break;
-      case "di proses":
+      case "diproses":
           statusInput.classList.add("bg-success");
           break;
       case "selesai":

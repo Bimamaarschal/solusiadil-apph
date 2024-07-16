@@ -32,18 +32,37 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<style>
 		.btn-jawab {
-			background-color: rgb(255, 255, 138);
+			background-color: #ffc107 !important;
 			color: black;
+			padding: 5px;
+			font-size: 12px;
+			margin: 5px;
 		}
 
 		.btn-lihat {
-			background-color: rgb(90, 212, 90);
+			background-color: #28a745 !important;
 			color: white;
+			padding: 5px;
+			font-size: 12px;
+			margin: 5px;
+			padding-left: 8px;
+			padding-right: 8px;
 		}
 
 		.btn-selesai {
-			background-color: rgb(78, 78, 218);
+			background-color: #007bff !important;
 			color: white;
+			padding: 5px;
+			font-size: 12px;
+			margin: 5px;
+		}
+
+		.btn-gagal {
+			background-color: #dc3545 !important;
+			color: white;
+			padding: 5px;
+			font-size: 12px;
+			margin: 5px;
 		}
 	</style>
 </head>
@@ -127,8 +146,12 @@
 				<div class="col-lg-8 col-6">
 					<div class="row">
 						<div class="col-12">
+
 							<div class="comments-form">
-								<% if (konsultasiData.length> 0) { %>
+								<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Seluruh Konsultasi</h1>
+								<% konsultasiData.sort((a, b)=> new Date(a.tanggal) - new Date(b.tanggal));
+									if (konsultasiData.length > 0) {
+									%>
 									<table>
 										<thead>
 											<tr>
@@ -159,16 +182,24 @@
 														<%= konsultasi.id_apph %>
 													</td>
 													<td>
-														<form action="/konsultasidt" method="get">
-															<input type="hidden" name="id" value="<%= konsultasi.id_konsultasi %>">
-															<% if (konsultasi.status === 'Menunggu') { %>
-															  <button type="submit" class="btn-jawab">Jawab</button>
-															<% } else if (konsultasi.status === 'Proses') { %>
-															  <button type="submit" class="btn-lihat">Lihat</button>
-															<% } else if (konsultasi.status === 'Selesai') { %>
-															  <button type="submit" class="btn-selesai">Selesai</button>
-															<% } %>
-														  </form>
+														<form
+															action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>"
+															method="get">
+															<input type="hidden" name="id"
+																value="<%= konsultasi.id_konsultasi %>">
+															<% if (konsultasi.status==='Menunggu' ) { %>
+																<button type="submit" class="btn-jawab">Jawab</button>
+																<% } else if (konsultasi.status==='Diproses' ) { %>
+																	<button type="submit"
+																		class="btn-lihat">Lanjut</button>
+																	<% } else if (konsultasi.status==='Selesai' ) { %>
+																		<button type="submit"
+																			class="btn-selesai">Selesai</button>
+																		<% } else if (konsultasi.status==='Gagal' ) { %>
+																			<button type="submit"
+																				class="btn-gagal">Lihat</button>
+																			<% } %>
+														</form>
 													</td>
 												</tr>
 												<% }); %>
@@ -181,7 +212,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-lg-4 col-12">
 					<div class="main-sidebar">
 						<div class="single-widget recent-post">
@@ -189,20 +219,139 @@
 							<br>
 							<div class="content">
 								<ul class="comment" style="font-size: 12px;">
-									<li><i class="fa-solid fa-address-card" aria-hidden="true"></i>
-										Jumlah Konsultasi Proses
-									</li>
-									<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
-										Jumlah Konsultasi Selesai
-									</li>
-									<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
-										Jumlah Konsultasi Selesai
-									</li>
+									<% const totalKonsultasi2=konsultasiData.length; const
+										jumlahKonsultasiProses1=konsultasiData.filter(konsultasi=> konsultasi.status ===
+										'Diproses').length;
+										const jumlahKonsultasiSelesai1 = konsultasiData.filter(konsultasi =>
+										konsultasi.status === 'Selesai').length;
+										const jumlahKonsultasiGagal1 = konsultasiData.filter(konsultasi =>
+										konsultasi.status === 'Gagal').length;
+										%>
+										<li><i class="fa-solid fa-address-card" aria-hidden="true"></i>
+											Jumlah Konsultasi: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">  <%= totalKonsultasi2 %> </i>
+										</li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+											Jumlah Konsultasi Proses: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">  <%= jumlahKonsultasiProses1 %> </i>
+										</li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+											Jumlah Konsultasi Selesai: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">  <%= jumlahKonsultasiSelesai1 %> </i>
+										</li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i> 
+											Jumlah Konsultasi Gagal: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">  <%= jumlahKonsultasiGagal1 %> </i>
+										</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-8 col-6">
+					<div class="row">
+						<div class="col-12">
+
+							<div class="comments-form">
+								<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Konsultasi Oleh Anda</h1>
+								<% const filteredData=konsultasiData.filter(konsultasi=> konsultasi.id_apph ===
+									id_apph);
+									filteredData.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+									if (filteredData.length > 0) {
+									%>
+									<table>
+										<thead>
+											<tr>
+												<th>ID Konsultasi</th>
+												<th>Status</th>
+												<th>Nama Masyarakat</th>
+												<th>Tanggal</th>
+												<th>APPH</th>
+												<th>Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+											<% filteredData.forEach(konsultasi=> { %>
+												<tr>
+													<td>
+														<%= konsultasi.id_konsultasi %>
+													</td>
+													<td>
+														<%= konsultasi.status %>
+													</td>
+													<td>
+														<%= konsultasi.nama_mast %>
+													</td>
+													<td>
+														<%= konsultasi.tanggal %>
+													</td>
+													<td>
+														<%= konsultasi.id_apph %>
+													</td>
+													<td>
+														<form
+															action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>"
+															method="get">
+															<input type="hidden" name="id"
+																value="<%= konsultasi.id_konsultasi %>">
+															<% if (konsultasi.status==='Menunggu' ) { %>
+																<button type="submit" class="btn-jawab">Jawab</button>
+																<% } else if (konsultasi.status==='Diproses' ) { %>
+																	<button type="submit"
+																		class="btn-lihat">Lanjut</button>
+																	<% } else if (konsultasi.status==='Selesai' ) { %>
+																		<button type="submit"
+																			class="btn-selesai">Selesai</button>
+																		<% } else if (konsultasi.status==='Gagal' ) { %>
+																			<button type="submit"
+																				class="btn-gagal">Lihat</button>
+																			<% } %>
+														</form>
+													</td>
+												</tr>
+												<% }); %>
+										</tbody>
+									</table>
+									<% } else { %>
+										<p>Tidak ada data konsultasi yang tersedia.</p>
+										<% } %>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-12">
+					<div class="main-sidebar">
+						<div class="single-widget recent-post">
+							<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Data Konsultasi Anda</h3>
+							<br>
+							<div class="content">
+								<ul class="comment" style="font-size: 12px; ">
+									<% const filteredData2=konsultasiData.filter(konsultasi=> konsultasi.id_apph ===
+										id_apph);
+										const totalKonsultasi = filteredData2.length;
+										const jumlahKonsultasiProses = filteredData2.filter(konsultasi =>
+										konsultasi.status === 'Diproses').length;
+										const jumlahKonsultasiSelesai = filteredData2.filter(konsultasi =>
+										konsultasi.status === 'Selesai').length;
+										const jumlahKonsultasiGagal = filteredData2.filter(konsultasi =>
+										konsultasi.status === 'Gagal').length;
+										%>
+										<li><i class="fa-solid fa-address-card" aria-hidden="true"></i>
+											Jumlah Konsultasi: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">  <%= totalKonsultasi %> </i>
+										</li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+											Jumlah Konsultasi Proses: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">  <%= jumlahKonsultasiProses %> </i>
+										</li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+											Jumlah Konsultasi Selesai: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">   <%= jumlahKonsultasiSelesai %> </i>
+										</li>
+										<li><i class="fa-solid fa-id-card" aria-hidden="true"></i>
+											Jumlah Konsultasi Gagal: <i style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">   <%= jumlahKonsultasiGagal %> </i>
+										</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</section>
