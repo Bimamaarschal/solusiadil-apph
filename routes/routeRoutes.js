@@ -39,4 +39,8 @@ router.get("/panduan", cekLoginMasuk, (req, res) => {
   res.render("panduan");
 });
 
+router.get("/tampiljwt", cekLoginMasuk, (req, res) => {
+  res.render("login");
+});
+
 module.exports = router;

@@ -34,7 +34,7 @@ exports.loginApph = async (req, res) => {
           nik: apphData.nik
         },
         JWT_SECRET,
-        { expiresIn: '1h' }
+        { expiresIn: '3h' }
       );
       res.cookie('token', token, { httpOnly: true });
       res.redirect(`/beranda?bima-safety-key=${randomString}&${id_apph}&${randomString}`);

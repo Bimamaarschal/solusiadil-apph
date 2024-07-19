@@ -15,6 +15,7 @@ router.get('/register', (req, res) => {
 router.get('/beranda', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'beranda.html')); 
 });
+
 router.post('/users/register', userController.registerUser);
 router.post('/users/login', userController.loginUser);
 
