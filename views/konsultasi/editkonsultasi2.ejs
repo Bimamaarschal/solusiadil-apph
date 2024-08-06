@@ -1,0 +1,311 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<%- include('../partials/head') %>
+
+	<body>
+
+		<%- include('../partials/header', { activePage: 'konsultasi' }) %>
+	
+	<section class="news-single section" style="padding-top: 5px;">
+		<div class="container">
+			<div class="row"></div>
+			<div class="col-lg-12 col-2">
+				<div class="col-lg-12 col-12">
+					<div class="row">
+						<div class="col-12">
+							<div class="comments-form">
+								<h1 style="font-size: 18px;"><i style="font-size: 25px;"
+										class="fa-solid fa-comments"></i> Konsultasi - ID <%= konsultasi.id_konsultasi
+										%>
+								</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<form action="/updateKonsultasi1" method="POST">
+					<div class="col-lg-12 col-12">
+						<div class="row">
+							<div class="col-12">
+								<div class="comments-form">
+									<div class="d-flex justify-content-between align-items-center">
+										<h2 style="display: inline;">
+											Data Kasus Hukum dan Pengguna
+										</h2>
+										<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+											title="Data tidak dapat diubah"></i>
+									</div>
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>ID Konsultasi</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-folder-closed"></i>
+													<input id="id_konsultasi" name="id_konsultasi" type="number"
+														value="<%= konsultasi.id_konsultasi %>"
+														oninput="validateLength(this)" readonly>
+												</div>
+												<small id="error-message" style="color:red; display:none;">ID hanya
+													terdiri
+													dari 9 angka acak</small>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>Tanggal Pengajuan Konsultasi</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-calendar-days"></i>
+													<input id="tanggal" name="tanggal" type="text"
+														value="<%= konsultasi.tanggal %>" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>Status Penanganan</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-spinner"></i>
+													<input id="status" name="status" type="text"
+														value="<%= konsultasi.status %>" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>Wilayah Hukum</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-map-location-dot"></i>
+													<input id="wilayahhukum" name="wilayahhukum" type="text"
+														value="<%= konsultasi.wilayahhukum %>" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>ID Pengguna - Solusi Adil Users - Mengajukan Pertanyaan</small>
+												<div class="input-icon">
+													<i class="fa-regular fa-id-card"></i>
+													<input id="id_masyarakat" name="id_masyarakat" type="text"
+														value="<%= konsultasi.id_masyarakat %>" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>Nama Penanya</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-user-tie"></i>
+													<input id="nama_mast" name="nama_mast" type="text"
+														value="<%= konsultasi.nama_mast %>" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-12">
+						<div class="row">
+							<div class="col-12">
+								<div class="comments-form">
+									<div class="d-flex justify-content-between align-items-center">
+										<h2 style="display: inline;">
+											APPH - Penjawab Pertanyaan - Anda Pengguna Terverifikasi
+										</h2>
+										<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+											title="Data tidak dapat diubah"></i>
+									</div>
+									<div class="row">
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>ID APPH - Solusi Adil Team - Penjawab Pertanyaan</small>
+												<div class="input-icon">
+													<i class="fa-regular fa-id-card"></i>
+													<input id="id_apph" name="id_apph" type="text"
+														value="<%= id_apph %>" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>Nama Anda</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-user-tie"></i>
+													<input id="nama_apph" name="nama_apph" type="text"
+														value="<%= nama_apph %>" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-12">
+						<div class="row">
+							<div class="col-12">
+								<div class="comments-form">
+									<div class="d-flex justify-content-between align-items-center">
+										<h2 style="display: inline;">
+											<i style="font-size: 25px;" class="fa-solid fa-comments"></i> Pertanyaan -
+											Dikonsultasikan
+										</h2>
+										<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+											title="Data tidak dapat diubah"></i>
+									</div>
+									<div class="row">
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group position-relative">
+												<small>Pertanyaan</small>
+												<div class="input-icon">
+													<i class="fa-regular fa-copy"></i>
+													<input id="pertanyaan" name="pertanyaan" type="text"
+														value="<%= konsultasi.pertanyaan %>" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group message">
+												<small>Keterangan Lanjutan</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-copy"></i>
+													<textarea style="height: 120px;" name="keterangan" rows="2"
+														readonly> <%= konsultasi.keterangan %> </textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-12">
+						<div class="row">
+							<div class="col-12">
+								<div class="comments-form">
+									<div class="d-flex justify-content-between align-items-center">
+										<h2 style="display: inline;">
+											<i style="font-size: 25px;" class="fa-solid fa-comments"></i> Tanggapan
+											Lanjutan
+										</h2>
+										<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+											title="Data tidak dapat diubah"></i>
+									</div>
+									<div class="row">
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group message">
+												<small>Tagapan Lanjutan Berdasarkan Jawaban</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-copy"></i>
+													<textarea style="height: 120px;" name="lanjutan1" rows="2"
+														readonly> <%= konsultasi.lanjutan1 %> </textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-12">
+						<div class="row">
+							<div class="col-12">
+								<div class="comments-form">
+									<h2 style="display: inline;"><i style="font-size: 25px;"
+											class="fa-solid fa-scale-balanced"></i> Penaganan Jawaban Hukum - Anda dapat
+										meEdit Jawaban Konsultasi ini.
+									</h2> <br><br>
+									<div class="row">
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group">
+												<small>Judul - Berikan Judul untuk Kasus Hukum Ini</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-pen-nib"></i>
+													<input id="judul" name="judul" type="text"
+														value="<%= konsultasi.judul%>" oninput="validateJudul(this)"
+														required>
+													<small id="error-message-judul"
+														style="color:red; display:none;">Hanya
+														Alfabet A-Z
+														dan tidak lebih dari 150 karakter</small>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group">
+												<small>Dasar Hukum - Berikan Dasar Hukum Penyelesaian Kasus Hukum
+													Ini</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-book"></i>
+													<input id="undangundang" name="undangundang"
+														value="<%= konsultasi.undangundang%>" type="text"
+														oninput="validateUU(this)" required>
+													<small id="error-message-undangundang"
+														style="color:red; display:none;">Tidak lebih dari 550
+														karakter</small>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group">
+												<small>Referensi - Berikan Referensi untuk Kasus Hukum Ini</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-book-bookmark"></i>
+													<input id="referensi" name="referensi" type="text"
+														oninput="validateReferensi(this)"
+														value="<%= konsultasi.referensi%>" required>
+													<small id="error-message-referensi"
+														style="color:red; display:none;">Tidak lebih dari 550
+														karakter</small>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group message">
+												<small>Jawaban Penanganan dan Solusi</small>
+												<div class="input-icon">
+													<i class="fa-solid fa-gavel"></i>
+													<textarea style="height: 220px;" name="jawaban" rows="5"
+														placeholder="Tolong, pastikan kebenaran dan keakuratan jawaban berdasarkan peraturan perundang-udangan yang berlaku dan relevan"> <%= konsultasi.jawaban %> </textarea>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-6 col-12">
+											<div class="form-group">
+												<small>Status Akhir Penanganan Konsultasi</small>
+												<select class="form-control wide" id="status" name="status" required>
+													<option value="Pilih" disabled selected>Pilih</option>
+													<option value="Diproses">Diproses</option>
+													<option value="Selesai">Selesai</option>
+													<option value="Gagal">Gagal</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-0 col-md-0 col-12">
+											<div class="form-group text-lg-right text-md-right text-center">
+												<div class="get-quote">
+													<button type="submit" class="btn">Perbarui</button>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<%- include('../partials/footer') %>
+	<%- include('../partials/js') %>
+	<script src="function/konsultasi.js"></script>
+
+</body>
+
+</html>

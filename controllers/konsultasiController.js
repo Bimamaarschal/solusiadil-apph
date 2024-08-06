@@ -5,16 +5,14 @@ exports.getKonsultasi = async (req, res) => {
       const { id_apph, nama_apph } = req.apph;
       const response = await axios.get('https://solusiadil-api.vercel.app/konsultasi');
       const konsultasiData = Object.values(response.data);
-  
-      res.render('konsultasi', { konsultasiData, id_apph, nama_apph });
+      res.render('konsultasi/konsultasi', { konsultasiData, id_apph, nama_apph });
     } catch (error) {
       console.error('Error fetching konsultasi data:', error);
       res.status(500).send('Error fetching konsultasi data');
     }
   };
 
-
-  exports.getDetailKonsultasi = async (req, res) => {
+exports.getDetailKonsultasi = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
       const { id_apph, nama_apph } = req.apph;
@@ -24,8 +22,7 @@ exports.getKonsultasi = async (req, res) => {
       if (!formattedKonsultasi) {
         throw new Error('Data konsultasi tidak ditemukan');
       }
-      res.render('editkonsultasi', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
-  
+      res.render('konsultasi/editkonsultasi', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
     } catch (error) {
       console.error(error);
       res.status(500).send('Terjadi kesalahan dalam mengambil data konsultasi.');
@@ -42,15 +39,14 @@ exports.getKonsultasi = async (req, res) => {
       if (!formattedKonsultasi) {
         throw new Error('Data konsultasi tidak ditemukan');
       }
-      res.render('editkonsultasi2', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
-  
+      res.render('konsultasi/editkonsultasi2', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
     } catch (error) {
       console.error(error);
       res.status(500).send('Terjadi kesalahan dalam mengambil data konsultasi.');
     }
   };
 
-  exports.getDetailKonsultasi3 = async (req, res) => {
+exports.getDetailKonsultasi3 = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
       const { id_apph, nama_apph } = req.apph;
@@ -60,7 +56,7 @@ exports.getKonsultasi = async (req, res) => {
       if (!formattedKonsultasi) {
         throw new Error('Data konsultasi tidak ditemukan');
       }
-      res.render('konsultasilihat', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
+      res.render('konsultasi/konsultasilihat', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
   
     } catch (error) {
       console.error(error);
@@ -68,7 +64,7 @@ exports.getKonsultasi = async (req, res) => {
     }
   };
   
-  exports.updateKonsultasi = async (req, res) => {
+exports.updateKonsultasi = async (req, res) => {
     try {
       const konsultasiId = req.body.id_konsultasi;
       const updatedData = {
@@ -89,16 +85,15 @@ exports.getKonsultasi = async (req, res) => {
         undangundang: req.body.undangundang,
         wilayahhukum: req.body.wilayahhukum,
       };
-  
       await axios.put(`https://solusiadil-api.vercel.app/konsultasi/${konsultasiId}`, updatedData);
-      res.redirect('/konsultasi');
+      res.redirect('konsultasi/konsultasi');
     } catch (error) {
       console.error('Error updating konsultasi:', error);
       res.status(500).send('Error updating konsultasi');
     }
   };
 
-  exports.updateKonsultasi1 = async (req, res) => {
+exports.updateKonsultasi1 = async (req, res) => {
     try {
       console.log('Request Body:', req.body); 
       const status = Array.isArray(req.body.status) ? req.body.status[req.body.status.length - 1] : req.body.status;
@@ -122,9 +117,8 @@ exports.getKonsultasi = async (req, res) => {
         undangundang: req.body.undangundang,
         wilayahhukum: req.body.wilayahhukum,
       };
-  
       await axios.put(`https://solusiadil-api.vercel.app/konsultasi/${konsultasiId1}`, updatedData1);
-      res.redirect('/konsultasi');
+      res.redirect('konsultasi/konsultasi');
     } catch (error) {
       console.error('Error updating konsultasi:', error);
       res.status(500).send('Error updating konsultasi');

@@ -1,0 +1,73 @@
+.bg-warning {
+	background-color: #ffc107 !important;
+}
+
+.bg-success {
+	background-color: #28a745 !important;
+}
+
+.bg-primary {
+	background-color: #007bff !important;
+}
+
+.bg-danger {
+	background-color: #dc3545 !important;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+
+.input-icon {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.input-icon i {
+	position: absolute;
+	left: 10px;
+	pointer-events: none;
+}
+
+.input-icon input {
+	padding-left: 30px;
+	/* Adjust this value based on the icon size */
+}
+
+.bg-warning {
+	background-color: #ffc107 !important;
+}
+
+.bg-success {
+	background-color: #28a745 !important;
+}
+
+.bg-primary {
+	background-color: #007bff !important;
+}
+
+.bg-danger {
+	background-color: #dc3545 !important;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.align-items-center {
+	align-items: center;
+}

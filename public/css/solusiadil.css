@@ -1727,6 +1727,131 @@ body{
 	End Pricing Table CSS
 ===============================*/
 
+.btn-jawab {
+	background-color: #ffc107 !important;
+	color: black;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+}
+
+.btn-lihat {
+	background-color: #28a745 !important;
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.btn-selesai {
+	background-color: #007bff !important;
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+}
+
+.btn-gagal {
+	background-color: #dc3545 !important;
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+}
+
+.input-icon {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.input-icon i {
+	position: absolute;
+	left: 10px;
+	pointer-events: none;
+}
+
+.input-icon input {
+	padding-left: 30px;
+	/* Adjust this value based on the icon size */
+}
+
+.bg-warning {
+	background-color: #ffc107 !important;
+}
+
+.bg-success {
+	background-color: #28a745 !important;
+}
+
+.bg-primary {
+	background-color: #007bff !important;
+}
+
+.bg-danger {
+	background-color: #dc3545 !important;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
+
+.input-icon {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.input-icon i {
+	position: absolute;
+	left: 10px;
+	pointer-events: none;
+}
+
+.input-icon input {
+	padding-left: 30px;
+	/* Adjust this value based on the icon size */
+}
+
+.bg-warning {
+	background-color: #ffc107 !important;
+}
+
+.bg-success {
+	background-color: #28a745 !important;
+}
+
+.bg-primary {
+	background-color: #007bff !important;
+}
+
+.bg-danger {
+	background-color: #dc3545 !important;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.justify-content-between {
+	justify-content: space-between;
+}
+
+.align-items-center {
+	align-items: center;
+}
+
 /*========================
 	Start Clients CSS
 ==========================*/
