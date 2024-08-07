@@ -5,6 +5,7 @@ const loginRoutes = require("./routes/loginRoutes");
 const routeRoutes = require("./routes/routeRoutes");
 const konsultasiRoutes = require("./routes/konsultasiRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const lupaRoutes = require("./routes/lupaRoutes");
 const path = require("path");
 
 const app = express();
@@ -27,6 +28,7 @@ app.use("/", loginRoutes);
 app.use("/", routeRoutes);
 app.use("/", konsultasiRoutes);
 app.use("/", blogRoutes);
+app.use("/", lupaRoutes);
 
 
 const PORT = process.env.PORT || 3000;

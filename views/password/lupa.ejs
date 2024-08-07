@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
-<%- include('partials/head') %>
+<%- include('../partials/head') %>
 
 <body>
 
@@ -22,9 +22,8 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-12">
 					<div class="section-title">
-						<h2> Portal Profesi Penegak Hukum</h2>
-						<p style="font-size: 13px;">Silahkan masuk untuk memulai
-							semua fitur APPH Solusi Adil</p>
+						<h2> Lupa kata Sandi</h2>
+						<p style="font-size: 13px;">Silahkan isi data valid untuk memperbarui kata sandi Anda</p>
 					</div>
 				</div>
 			</div>
@@ -32,33 +31,34 @@
 				<div class="col-lg-12 col-md-6 col-6">
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-12">
-							<form class="form" action="/login" method="POST">
+							<form class="form" action="/ceklupa" method="POST">
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-12">
 										<div class="form-group">
 											<small>SOLUSI ADIL APPH ID - 9 Digit Angka Saat Anda Terverifikasi Sebagai APPH</small>
-											<input id="id_apph" name="id_apph" type="number"
-												oninput="validateLength(this)">
+											<input id="id_apph" name="id_apph" type="number" oninput="validateLength(this)">
 											<small id="error-message" style="color:red; display:none;">ID hanya terdiri
 												dari 9 angka acak</small>
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-12">
 										<div class="form-group">
-											<small>Sandi</small>
-											<input id="password" name="password" type="password">
+											<small>NIK - Nomor Induk Kependudukan</small>
+											<input id="nik" name="nik" type="number" oninput="validateLength2(this)">
+											<small id="error-message2" style="color:red; display:none;">ID hanya terdiri
+												dari 13 angka acak</small>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-lg-7 col-md-8 col-12">
-										<p style="font-size: 12px;">Apakah Anda lupa kata sandi ? <a href="lupa"
-												style="background: black; color: white; padding: 10px;">Solusi</a></p>
+										<p style="font-size: 12px;">Apakah Anda ingin Login <a href="masuk"
+												style="background: black; color: white; padding: 10px;">Masuk</a></p>
 									</div>
 									<div class="col-lg-5 col-md-4 col-12">
 										<div class="form-group text-lg-right text-md-right text-center">
 											<div class="get-quote">
-												<button type="submit" class="btn" value="Login">Masuk</button>
+												<button type="submit" class="btn" value="cek">Kirim</button>
 											</div>
 										</div>
 									</div>
@@ -84,7 +84,7 @@
 		</div>
 	</footer>
 
-	<%- include('partials/js') %>
+	<%- include('../partials/js') %>
 	<script src="function/masuk.js"></script>
 
 </body>
