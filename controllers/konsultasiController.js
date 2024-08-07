@@ -86,7 +86,7 @@ exports.updateKonsultasi = async (req, res) => {
         wilayahhukum: req.body.wilayahhukum,
       };
       await axios.put(`https://solusiadil-api.vercel.app/konsultasi/${konsultasiId}`, updatedData);
-      res.redirect('konsultasi/konsultasi');
+      res.redirect('konsultasi');
     } catch (error) {
       console.error('Error updating konsultasi:', error);
       res.status(500).send('Error updating konsultasi');
@@ -95,7 +95,6 @@ exports.updateKonsultasi = async (req, res) => {
 
 exports.updateKonsultasi1 = async (req, res) => {
     try {
-      console.log('Request Body:', req.body); 
       const status = Array.isArray(req.body.status) ? req.body.status[req.body.status.length - 1] : req.body.status;
       const keterangan = Array.isArray(req.body.keterangan) ? req.body.keterangan.join(' ') : req.body.keterangan;
       const konsultasiId1 = req.body.id_konsultasi;
@@ -118,7 +117,7 @@ exports.updateKonsultasi1 = async (req, res) => {
         wilayahhukum: req.body.wilayahhukum,
       };
       await axios.put(`https://solusiadil-api.vercel.app/konsultasi/${konsultasiId1}`, updatedData1);
-      res.redirect('konsultasi/konsultasi');
+      res.redirect('konsultasi');
     } catch (error) {
       console.error('Error updating konsultasi:', error);
       res.status(500).send('Error updating konsultasi');
