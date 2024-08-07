@@ -1,0 +1,33 @@
+.btn-jawab {
+	background-color: #ffc107 !important;
+	color: black;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+}
+
+.btn-lihat {
+	background-color: #28a745 !important;
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.btn-selesai {
+	background-color: #007bff !important;
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+}
+
+.btn-gagal {
+	background-color: #dc3545 !important;
+	color: white;
+	padding: 5px;
+	font-size: 12px;
+	margin: 5px;
+}

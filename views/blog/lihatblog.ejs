@@ -1,413 +1,189 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
-<head>
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="Solusi Adil">
-	<meta name="description" content="">
-	<meta name='copyright' content='bimamaarschal'>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Judul -->
-	<title>Solusi Adil</title>
-	<link rel="icon" href="img/favicon.png">
+<%- include('../partials/head') %>
 
-	<!-- Fonts -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icofont@1.0.0/dist/icofont.min.css">
+	<body>
 
-	<!-- CSS Main Style-->
-	<link rel="stylesheet" href="css/solusiadil.css">
-	<link rel="stylesheet" href="css/animate.min.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/datepicker.css">
-	<link rel="stylesheet" href="css/nice-select.css">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/owl-carousel.css">
-	<link rel="stylesheet" href="css/responsive.css">
-	<style>
-		.input-icon {
-			position: relative;
-			display: flex;
-			align-items: center;
-		}
-
-		.input-icon i {
-			position: absolute;
-			left: 10px;
-			pointer-events: none;
-		}
-
-		.input-icon input {
-			padding-left: 30px;
-			/* Adjust this value based on the icon size */
-		}
-
-		.bg-warning {
-			background-color: #ffc107 !important;
-		}
-
-		.bg-success {
-			background-color: #28a745 !important;
-		}
-
-		.bg-primary {
-			background-color: #007bff !important;
-		}
-
-		.bg-danger {
-			background-color: #dc3545 !important;
-		}
-
-		.d-flex {
-			display: flex;
-		}
-
-		.justify-content-between {
-			justify-content: space-between;
-		}
-
-		.align-items-center {
-			align-items: center;
-		}
-	</style>
-</head>
-
-<body>
-
-	<!-- Header Area - Awal -->
-	<header class="header">
-		<!-- Solusiadil-topbar - Awal-->
-		<div class="solusiadil-topbar">
-			<div class="container">
-				<div class="row">
-					<!-- Pilihan - Awal -->
-					<div class="col-lg-6 col-md-5 col-12">
-						<ul class="solusiadil-top-link">
-							<li><a href="tentangkami">Solusi Adil</a></li>
-							<li><a href="kontak">Kontak</a></li>
-							<li><a href="faq">FAQ</a></li>
-						</ul>
-					</div>
-					<!-- Pilihan - Akhir -->
-					<!-- Kontak - Awal -->
-					<div class="col-lg-6 col-md-7 col-12">
-						<ul class="solusiadil-top-contact">
-							<li><i class="fa-brands fa-whatsapp"></i>+62 888 0188 9923</li>
-							<li><i class="fa fa-envelope"></i><a href="mailto:-">solusiadil.id@gmail.com</a></li>
-							<li><a href="/logout" style="font-size: 15px;"><i
-										class="fa-solid fa-right-from-bracket"></i>Keluar</a></li>
-						</ul>
-					</div>
-					<!-- Kontak - Akhir-->
-				</div>
-			</div>
-		</div>
-		<!-- Solusiadil-topbar - Akhir -->
-		<!-- Solusiadil-inner - Awal-->
-		<div class="header-inner">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-3 col-md-3 col-12">
-							<div class="logo" style="padding-bottom: 20px; width: 150px; height: auto;">
-								<a href="index"><img src="img/logo.gif" alt="#"></a>
-							</div>
-							<div class="mobile-nav"></div>
-						</div>
-						<div class="col-lg-7 col-md-9 col-12">
-							<div class="main-menu">
-								<nav class="navigation">
-									<ul class="nav menu">
-										<li><a href="beranda">Dashboard</a></li>
-										<li><a href="konsultasi">Konsultasi </a></li>
-										<li class="active"><a href="datablog">Blog </a></li>
-										<li><a href="panduan">Panduan</a></li>
-										<li><a href="aturan">Aturan</a></li>
-										<li><a href="profil">Profil</a></li>
-									</ul>
-								</nav>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Solusiadil-inner - Akhir-->
-	</header>
-	<!-- Header Area - Akhir -->
-
-	<!-- Single News -->
-	<section class="news-single section" style="padding-top: 5px;">
-		<div class="container">
-			<div class="row"></div>
-			<div class="col-lg-12 col-2">
-				<div class="col-lg-12 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="comments-form d-flex justify-content-between align-items-center">
-								<h1 style="font-size: 18px;"><i class="fa-solid fa-compass"></i>Data Blog ID <%= blog.id_blog %></h1>
-								<div class="get-quote">
-									<a href="bacablog?id_blog=<%= blog.id_blog %>" class="btn">Baca Blog</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<form action="/kirimblog" method="POST">
-				<div class="col-lg-12 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="comments-form">
-								<div class="d-flex justify-content-between align-items-center">
-									<h2 style="display: inline;">
-										Blog Hukum Baru
-									</h2>
-									<i style="font-size: 15px;" class="fa-solid fa-info-circle"
-										title="Data tidak dapat diubah"></i>
-								</div>
-								<div class="row">
-									<div class="col-lg-6 col-md-6 col-12">
-										<div class="form-group position-relative">
-											<small>ID blog</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-folder-closed"></i>
-												<input 
-													oninput="validateLength(this)" value="<%= blog.id_blog %>" readonly>
-											</div>
-											<small id="error-message" style="color:red; display:none;">ID hanya terdiri
-												dari 9 angka acak</small>
-										</div>
-									</div>
-									<div class="col-lg-6 col-md-6 col-12">
-										<div class="form-group position-relative">
-											<small>Tanggal Pengajuan Blog</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-calendar-days"></i>
-												<input value="<%= blog.tanggal %>" readonly >
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="comments-form">
-								<div class="d-flex justify-content-between align-items-center">
-									<h2 style="display: inline;">
-										Penulis Blog - Anda Pengguna Terverifikasi
-									</h2>
-									<i style="font-size: 15px;" class="fa-solid fa-info-circle"
-										title="Data tidak dapat diubah"></i>
-								</div>
-								<div class="row">
-									<div class="col-lg-6 col-md-6 col-12">
-										<div class="form-group position-relative">
-											<small>ID APPH Anda</small>
-											<div class="input-icon">
-												<i class="fa-regular fa-id-card"></i>
-												<input id="id_apph" name="id_apph" type="text" value="<%= blog.id_apph %>"
-													readonly>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-6 col-md-6 col-12">
-										<div class="form-group position-relative">
-											<small>Nama Anda</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-user-tie"></i>
-												<input id="nama_apph" name="nama_apph" type="text"
-													value="<%= blog.nama_apph %>" readonly>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12 col-12">
-					<div class="row">
-						<div class="col-12">
-							<div class="comments-form">
-								<h2 style="display: inline;"><i style="font-size: 25px;"
-										class="fa-solid fa-scale-balanced"></i> Blog Hukum Baru
-								</h2> <br><br>
-								<div class="row">
-									<div class="col-lg-12 col-md-6 col-12">
-										<div class="form-group">
-											<small>Judul - Berikan Judul untuk Blog Hukum Ini</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-pen-nib"></i>
-												<input id="judul" name="judul" value="<%= blog.judul %>"  type="text" oninput="validateJudul(this)"
-													readonly>
-												<small id="error-message-judul" style="color:red; display:none;">Hanya
-													Alfabet A-Z
-													dan tidak lebih dari 150 karakter</small>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-6 col-12">
-										<div class="form-group">
-											<small>Dasar Hukum - Berikan Dasar Hukum Blog Hukum
-												Ini</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-book"></i>
-												<input id="undang_undang" value="<%= blog.undang_undang %>"  name="undang_undang" type="text"
-													oninput="validateUU(this)" readonly>
-												<small id="error-message-undang_undang"
-													style="color:red; display:none;">Tidak lebih dari 550
-													karakter</small>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-6 col-12">
-										<div class="form-group">
-											<small>Referensi - Berikan Referensi Blog Anda</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-book-bookmark"></i>
-												<input id="doc_pendukung" name="doc_pendukung" value="<%= blog.doc_pendukung %>" type="text"
-													oninput="validateReferensi(this)" readonly>
-												<small id="error-message-doc_pendukung"
-													style="color:red; display:none;">Tidak lebih dari 550
-													karakter</small>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-6 col-12">
-										<div class="form-group message">
-											<small>Tulis Blog Terkait Hukum</small>
-											<div class="input-icon">
-												<i class="fa-solid fa-pen-nib"></i>
-												<textarea style="height: 220px;" name="isi" rows="5"
-													placeholder="Tolong, pastikan kebenaran dan keakuratan isi berdasarkan peraturan perundang-udangan yang berlaku dan relevan" readonly> <%= blog.isi %></textarea>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-0 col-md-0 col-12">
-										<div class="form-group text-lg-right text-md-right text-center">
-											<div class="get-quote">
-												<a href="datablog" class="btn" >Kembali</a>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					</form>
-				</div>
-			</div>
-	</section>
-	<!--/ End Single News -->
-
-	<!-- Footer - Awal -->
-	<footer id="akhir" class="footer ">
-		<div class="footer-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-6 col-12">
-						<div class="single-footer">
-							<h2 style="font-size: 22px;">Solusi Adil</h2>
-							<p style="font-size: 12px;">Solusi adil memberikan keadilan sejati, menyelaraskan hak dan
-								kewajiban untuk mewujudkan
-								penyelesaian perkara hukum yang berkeadilan.</p>
-							<ul class="social">
-								<li><a href="https://www.facebook.com/solusiadil/"><i class="icofont-facebook"></i></a>
-								</li>
-								<li><a href="https://www.instagram.com/solusiadil/"><i
-											class="icofont-instagram"></i></a></li>
-								<li><a href="https://www.youtube.com/solusiadil/"><i class="icofont-youtube"></i></a>
-								</li>
-								<li><a href="https://www.linkedin.com/in/solusiadil/"><i
-											class="icofont-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer f-link">
-							<h2>Akses Cepat</h2>
+		<%- include('../partials/header', { activePage: 'datablog' }) %>
+			<section class="news-single section" style="padding-top: 5px;">
+				<div class="container">
+					<div class="row"></div>
+					<div class="col-lg-12 col-2">
+						<div class="col-lg-12 col-12">
 							<div class="row">
-								<div class="col-lg-6 col-md-6 col-12">
-									<ul>
-										<li><a href="/tentangkami"><i class="fa fa-caret-right" aria-hidden="true"></i>
-												Solusi
-												Adil
-											</a></li>
-										<li><a href="/layanan"><i class="fa fa-caret-right" aria-hidden="true"></i>
-												Pelayanan
-											</a></li>
-										<li><a href="/faq"><i class="fa fa-caret-right" aria-hidden="true"></i> FAQ </a>
-										</li>
-										<li><a href="/blog"><i class="fa fa-caret-right" aria-hidden="true"></i> Blog
-											</a>
-										</li>
-										<li><a href="/kontak"><i class="fa fa-caret-right" aria-hidden="true"></i>
-												Kontak
-											</a>
-										</li>
-									</ul>
+								<div class="col-12">
+									<div class="comments-form d-flex justify-content-between align-items-center">
+										<h1 style="font-size: 18px;"><i class="fa-solid fa-compass"></i>Data Blog ID <%=
+												blog.id_blog %>
+										</h1>
+										<div class="get-quote">
+											<a href="bacablog?id_blog=<%= blog.id_blog %>" class="btn">Baca Blog</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="single-footer">
-							<h2>Keterangan</h2>
-							<p style="font-size: 12px;"> Website Solusi Adil di buat untuk keperluan Skripsi dan Sistem
-								pelayanan yang akan
-								digunakan di lingkup Kota Bandung </p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-12">
-						<div class="copyright-content">
-							<p style="font-size: 13px;">© Copyright 2024 | Di Rancang dan Di Buat oleh <a
-									href="https://www.linkedin.com/in/bimamaarschal/" target="_blank">Bima
-									Maarschal</a> </p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer - Akhir -->
-	<!-- Solusi Adil - JS Library -->
-	<script src="function/blog.js"></script>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-migrate-3.0.0.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/easing.js"></script>
-	<script src="js/colors.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/jquery.nav.js"></script>
-	<script src="js/slicknav.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-	<script src="js/niceselect.js"></script>
-	<script src="js/tilt.jquery.min.js"></script>
-	<script src="js/owl-carousel.js"></script>
-	<script src="js/jquery.counterup.min.js"></script>
-	<script src="js/steller.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+						<form action="/kirimblog" method="POST">
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<div class="d-flex justify-content-between align-items-center">
+												<h2 style="display: inline;">
+													Blog Hukum Baru
+												</h2>
+												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+													title="Data tidak dapat diubah"></i>
+											</div>
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>ID blog</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-folder-closed"></i>
+															<input oninput="validateLength(this)"
+																value="<%= blog.id_blog %>" readonly>
+														</div>
+														<small id="error-message" style="color:red; display:none;">ID
+															hanya terdiri
+															dari 9 angka acak</small>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>Tanggal Pengajuan Blog</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-calendar-days"></i>
+															<input value="<%= blog.tanggal %>" readonly>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<div class="d-flex justify-content-between align-items-center">
+												<h2 style="display: inline;">
+													Penulis Blog - Anda Pengguna Terverifikasi
+												</h2>
+												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+													title="Data tidak dapat diubah"></i>
+											</div>
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>ID APPH Anda</small>
+														<div class="input-icon">
+															<i class="fa-regular fa-id-card"></i>
+															<input id="id_apph" name="id_apph" type="text"
+																value="<%= blog.id_apph %>" readonly>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>Nama Anda</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-user-tie"></i>
+															<input id="nama_apph" name="nama_apph" type="text"
+																value="<%= blog.nama_apph %>" readonly>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<h2 style="display: inline;"><i style="font-size: 25px;"
+													class="fa-solid fa-scale-balanced"></i> Blog Hukum Baru
+											</h2> <br><br>
+											<div class="row">
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Judul - Berikan Judul untuk Blog Hukum Ini</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-pen-nib"></i>
+															<input id="judul" name="judul" value="<%= blog.judul %>"
+																type="text" oninput="validateJudul(this)" readonly>
+															<small id="error-message-judul"
+																style="color:red; display:none;">Hanya
+																Alfabet A-Z
+																dan tidak lebih dari 150 karakter</small>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Dasar Hukum - Berikan Dasar Hukum Blog Hukum
+															Ini</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-book"></i>
+															<input id="undang_undang" value="<%= blog.undang_undang %>"
+																name="undang_undang" type="text"
+																oninput="validateUU(this)" readonly>
+															<small id="error-message-undang_undang"
+																style="color:red; display:none;">Tidak lebih dari 550
+																karakter</small>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Referensi - Berikan Referensi Blog Anda</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-book-bookmark"></i>
+															<input id="doc_pendukung" name="doc_pendukung"
+																value="<%= blog.doc_pendukung %>" type="text"
+																oninput="validateReferensi(this)" readonly>
+															<small id="error-message-doc_pendukung"
+																style="color:red; display:none;">Tidak lebih dari 550
+																karakter</small>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group message">
+														<small>Tulis Blog Terkait Hukum</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-pen-nib"></i>
+															<textarea style="height: 220px;" name="isi" rows="5"
+																placeholder="Tolong, pastikan kebenaran dan keakuratan isi berdasarkan peraturan perundang-udangan yang berlaku dan relevan"
+																readonly> <%= blog.isi %></textarea>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-0 col-md-0 col-12">
+													<div class="form-group text-lg-right text-md-right text-center">
+														<div class="get-quote">
+															<a href="datablog" class="btn">Kembali</a>
+														</div>
+													</div>
+												</div>
 
-</body>
+											</div>
+										</div>
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<%- include('../partials/footer') %>
+
+				<%- include('../partials/js') %>
+					<script src="function/blog.js"></script>
+	</body>
 
 </html>
