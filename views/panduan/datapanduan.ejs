@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<%- include('../partials/head') %>
+
+	<body>
+
+		<%- include('../partials/header', { activePage: 'datapanduan' }) %>
+			<section class="news-single section" style="padding-top: 5px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-2">
+							<div class="row">
+								<div class="col-12">
+									<div class="comments-form d-flex justify-content-between align-items-center">
+										<h1 style="font-size: 18px;"><i class="fa-solid fa-compass"></i> Cari Panduan Hukum</h1>
+										<div class="get-quote">
+											<a href="tulispanduan" class="btn">Panduan Hukum Baru</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-8 col-6">
+							<div class="row">
+								<div class="col-12">
+
+									<div class="comments-form">
+										<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Seluruh Panduan</h1>
+										<% panduanData.sort((a, b)=> new Date(a.tanggal) - new Date(b.tanggal));
+											if (panduanData.length > 0) {
+											%>
+											<table>
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Judul</th>
+														<th>Institusi</th>
+														<th>Aksi</th>
+													</tr>
+												</thead>
+												<tbody>
+													<% panduanData.forEach(panduan=> { %>
+														<tr>
+															<td>
+																<%= panduan.id_panduan %>
+															</td>
+															<td>
+																<%= panduan.judul %>
+															</td>
+															<td>
+																<%= panduan.nama_lai %>
+															</td>
+															<td>
+																<form
+																	action="<%= panduan.status === 'Diproses' ? '/panduandt' : (panduan.status === 'Diproses' ? '/panduandt2' : '/lihatpanduan') %>"
+																	method="get">
+																	<input type="hidden" name="id" value="<%= panduan.id_panduan %>">
+																	<% if (panduan.status==='Diproses' ) { %>
+																		<button type="submit" class="btn-jawab">Lihat</button>
+																			<% } else if (panduan.status==='Terbit' ) { %>
+																				<button type="submit" class="btn-selesai">Lihat</button>
+																				<% } else if (panduan.status==='Gagal' ) { %>
+																					<button type="submit" class="btn-gagal">Lihat</button>
+																					<% } %>
+																</form>
+															</td>
+														</tr>
+														<% }); %>
+												</tbody>
+											</table>
+											<% } else { %>
+												<p>Tidak ada data panduan yang tersedia.</p>
+												<% } %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4 col-12">
+							<div class="main-sidebar">
+								<div class="single-widget recent-post">
+									<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Data panduan</h3>
+									<br>
+									<div class="content">
+										<ul class="comment" style="font-size: 12px;">
+											<% const totalpanduan2=panduanData.length; const
+												jumlahpanduanProses1=panduanData.filter(panduan=> panduan.status ===
+												'Diproses').length;
+												const jumlahpanduanSelesai1 = panduanData.filter(panduan => panduan.status ===
+												'Diterima').length;
+												const jumlahpanduanGagal1 = panduanData.filter(panduan => panduan.status ===
+												'Gagal').length;
+												%>
+												<li><i class="fa-solid fa-address-card" aria-hidden="true"></i>
+													Jumlah Seluruh panduan: <i
+														style="background-color:darkgrey ; padding: 5px; color:black ; border-radius: 100px;">
+														<%= totalpanduan2 %>
+													</i>
+												</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<%- include('../partials/footer') %>
+
+				<%- include('../partials/js') %>
+	</body>
+
+</html>

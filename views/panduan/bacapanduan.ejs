@@ -1,0 +1,160 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<%- include('../partials/head') %>
+
+	<body>
+
+		<%- include('../partials/header', { activePage: 'datapanduan' }) %>
+			<section class="news-single section" style="padding-top: 5px;">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-12">
+							<div class="row">
+								<div class="col-12">
+									<div class="single-main">
+										<h1 class="news-title"><a href="news-single.html">
+												<%= panduan.judul %>
+											</a></h1>
+											<div class="meta" style="padding: 0px; padding-bottom: 10px;">
+												<div class="meta-left" style="padding: 0px;">
+													<span class="date" style="padding-left: 15px;"><i class="fa-regular fa-id-card"></i>
+														<%= panduan.nama_apph %>, <%= panduan.id_apph %>
+													</span>
+												</div>
+											</div>
+										<div class="meta" style="padding: 0px; padding-bottom: 10px;">
+											<div class="meta-left" style="padding: 0px;">
+												<span class="date" style="padding-left: 15px;"><i class="fa-solid fa-calendar-days"></i>
+													<%= panduan.tanggal %>
+												</span>
+											</div>
+										</div>
+										<div class="meta" style="padding: 0px; padding-bottom: 10px; background-color: black;">
+											<div class="meta-left" style="padding: 0px;">
+												<span class="date" style="padding-left: 15px; color: white;">Dasar Hukum :
+													<%= panduan.undangundang %>
+												</span>
+											</div>
+										</div>
+										<div class="meta" style="padding: 0px; padding-bottom: 10px; background-color: black;">
+											<div class="meta-left" style="padding: 0px;">
+												<span class="date" style="padding-left: 15px; color: white;">Instansi/Lembaga :
+													<%= panduan.nama_lai %>
+												</span>
+											</div>
+										</div>
+										<div class="meta" style="padding: 0px; padding-bottom: 10px; background-color: black;">
+											<div class="meta-left" style="padding: 0px;">
+												<span class="date" style="padding-left: 15px; color: white;">Keterangan :
+													<%= panduan.keterangan %>
+												</span>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-12 col-md-6 col-12">
+												<div class="form-group">
+													<p style="color:black;  padding-bottom: 15px; font-weight: bold;">Dokumen Panduan</p>
+													<div class="input-icon">
+														<i class="fa-solid fa-book-bookmark"></i>
+														<iframe src="<%= panduan.isi_2.replace('public/', '') %>"
+															width="1200" height="600" style="border: none;"></iframe>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row" >
+											<div class="col-lg-12 col-md-12 col-12">
+												<div class="form-group message">
+													<p style="color:black; padding-bottom: 15px; font-weight: bold;">Penjelasan Panduan</p>
+														<p  id="formatted-dsa"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="solusiadil-fitur" style="padding-top: 100px;">
+				<div class="container">
+					<div class="solusiadil-fitur-inner">
+						<div class="row">
+							<div class="col-lg-4 col-md-6 col-12 ">
+								<div class="solusiadil-fitur-single first">
+									<div class="inner">
+										<div class="icon">
+											<i class="fa-solid fa-scale-balanced"></i>
+										</div>
+										<div class="single-content">
+											<h4>Menjawab Konsultasi</h4>
+											<p style="font-size: 12px;">Konsultasi Hukum Online: Solusi cepat dan akurat
+												untuk
+												setiap permasalahan hukum
+												Anda.</p>
+											<a href="/konsultasi">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-6 col-12">
+								<div class="solusiadil-fitur-single middle">
+									<div class="inner">
+										<div class="icon">
+											<i class="fa-solid fa-folder-open"></i>
+										</div>
+										<div class="single-content">
+											<h4>Tulis panduan</h4>
+											<p style="font-size: 13px;">Temukan Kepastian Hukum Anda: Cari Panduan Hukum
+												yang
+												Jelas dan Terpercaya di
+												Sini.</p>
+											<a href="/datapanduan">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-12 col-12">
+								<div class="solusiadil-fitur-single last">
+									<div class="inner">
+										<div class="icon">
+											<i class="fa-solid fa-gavel"></i>
+										</div>
+										<div class="single-content">
+											<h4>Panduan Hukum</h4>
+											<p style="font-size: 12px;">Jelajahi keadilan dan informasi hukum melalui
+												JDIH,
+												pintu akses utama untuk
+												pemahaman dan kepatuhan hukum.</p>
+											<a href="/jdih">Pilih Fitur<i class="fa fa-long-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<%- include('../partials/footer') %>
+
+				<%- include('../partials/js') %>
+					
+				<script>
+					function convertHtmlToTextWithFormatting(html) {
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(html, 'text/html');
+						return doc.body.innerHTML;
+					}
+					const htmlContent = `<%- panduan.isi_1 %>`;
+					const formattedTextElement = document.getElementById('formatted-dsa');
+					formattedTextElement.innerHTML = convertHtmlToTextWithFormatting(htmlContent);
+					formattedTextElement.style.setProperty('color', 'black', 'important');
+				
+					console.log(window.getComputedStyle(formattedTextElement).color);
+				</script>
+	</body>
+
+</html>

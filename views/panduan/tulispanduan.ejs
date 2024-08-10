@@ -1,0 +1,302 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<%- include('../partials/head') %>
+
+	<body>
+
+		<%- include('../partials/header', { activePage: 'datapanduan' }) %>
+			<section class="news-single section" style="padding-top: 5px;">
+				<div class="container">
+					<div class="row"></div>
+					<div class="col-lg-12 col-2">
+						<div class="col-lg-12 col-12">
+							<div class="row">
+								<div class="col-12">
+									<div class="comments-form">
+										<h1 style="font-size: 18px;"><i style="font-size: 25px;"
+												class="fa-solid fa-binoculars"></i> Panduan Hukum Baru</h1> 
+									</div>
+								</div>
+							</div>
+						</div>
+						<form action="/kirimpanduan" method="POST"  enctype="multipart/form-data">
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<div class="d-flex justify-content-between align-items-center">
+												<h2 style="display: inline;">
+													Panduan Hukum Baru
+												</h2>
+												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+													title="Data tidak dapat diubah"></i>
+											</div>
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>ID Panduan</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-folder-closed"></i>
+															<input id="id_panduan" name="id_panduan"
+																oninput="validateLength(this)" readonly>
+														</div>
+														<small id="error-message" style="color:red; display:none;">ID
+															hanya
+															terdiri
+															dari 9 angka acak</small>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>Tanggal Terbit</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-calendar-days"></i>
+															<input id="tanggal" name="tanggal" readonly>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<div class="d-flex justify-content-between align-items-center">
+												<h2 style="display: inline;">
+													Penulis - Anda Pengguna Terverifikasi
+												</h2>
+												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+													title="Data tidak dapat diubah"></i>
+											</div>
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>ID APPH Anda</small>
+														<div class="input-icon">
+															<i class="fa-regular fa-id-card"></i>
+															<input id="id_apph" name="id_apph" type="text"
+																value="<%= id_apph %>" readonly>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-12">
+													<div class="form-group position-relative">
+														<small>Nama Anda</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-user-tie"></i>
+															<input id="nama_apph" name="nama_apph" type="text"
+																value="<%= nama_apph %>" readonly>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-12 col-12">
+													<div class="form-group position-relative">
+														<small>Instansi</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-user-tie"></i>
+															<input id="nama_lai" name="nama_lai" type="text">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<h2 style="display: inline;"> Judul dan Referensi
+											</h2> <br><br>
+											<div class="row">
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Judul - Berikan Judul untuk Panduan Hukum Ini</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-pen-nib"></i>
+															<input id="judul" name="judul" type="text"
+																oninput="validateJudul(this)" required>
+															<small id="error-message-judul"
+																style="color:red; display:none;">Hanya
+																Alfabet A-Z
+																dan tidak lebih dari 150 karakter</small>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Dasar Hukum - Berikan Dasar Hukum Panduan Hukum
+															Ini</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-book"></i>
+															<input id="undangundang" name="undangundang" type="text"
+																oninput="validateUU(this)" required>
+															<small id="error-message-undangundang"
+																style="color:red; display:none;">Tidak lebih dari 550
+																karakter</small>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Keterangan Singkat</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-book-bookmark"></i>
+															<input id="keterangan" name="keterangan" type="text"
+																oninput="validateReferensi(this)" required>
+															<small id="error-message-keterangan"
+																style="color:red; display:none;">Tidak lebih dari 550
+																karakter</small>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 col-12">
+								<div class="row">
+									<div class="col-12">
+										<div class="comments-form">
+											<div class="d-flex justify-content-between align-items-center">
+												<h2 style="display: inline;">
+													Panduan
+												</h2>
+												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
+													title="Data tidak dapat diubah"></i>
+											</div>
+											<div class="row">
+												<div class="col-lg-12 col-md-12 col-12">
+													<div class="form-group message">
+														<small>Isi Kalimat Panduan</small>
+														<div class="input-icon">
+															<textarea id="froala-editor" name="isi_1"
+																placeholder="Tolong, pastikan kebenaran dan keakuratan isi berdasarkan peraturan perundang-udangan yang berlaku dan relevan"> </textarea>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-12 col-md-6 col-12">
+													<div class="form-group">
+														<small>Dokumen Panduan</small>
+														<div class="input-icon">
+															<i class="fa-solid fa-book-bookmark"></i>
+															<input type="file" id="isi_2" name="isi_2" accept="application/pdf" required>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-0 col-md-0 col-12">
+												<div class="form-group text-lg-right text-md-right text-center">
+													<div class="get-quote">
+														<button type="submit" class="btn">Kirim</button>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+
+					</div>
+			</section>
+
+			<%- include('../partials/footer') %>
+
+				<!-- Solusi Adil - JS Library -->
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/froala_editor.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/align.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/char_counter.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/code_beautifier.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/code_view.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/colors.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/draggable.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/emoticons.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/entities.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/file.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/font_family.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/font_size.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/fullscreen.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/image.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/image_manager.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/inline_style.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/line_breaker.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/link.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/lists.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/paragraph_format.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/paragraph_style.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/quick_insert.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/quote.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/save.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/table.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/url.min.js"></script>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.10/js/plugins/video.min.js"></script>
+				<script>
+					new FroalaEditor('#froala-editor', {
+						toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'formatOL', 'formatUL', 'insertLink', 'emoticons', 'specialCharacters', '|', 'undo', 'redo', 'html'],
+						pluginsEnabled: ['align', 'charCounter', 'codeBeautifier', 'colors', 'draggable', 'emoticons', 'entities', 'file', 'fontFamily', 'fontSize', 'fullscreen', 'image', 'imageManager', 'inlineStyle', 'lineBreaker', 'link', 'lists', 'paragraphFormat', 'paragraphStyle', 'quote', 'save', 'table', 'url', 'video'],
+						charCounterCount: true,
+						toolbarSticky: true,
+						height: 250,
+						width: 1000,
+
+					});
+				</script>
+				<script src="function/panduan.js"></script>
+				<script src="js/jquery.min.js"></script>
+				<script src="js/jquery-migrate-3.0.0.js"></script>
+				<script src="js/jquery-ui.min.js"></script>
+				<script src="js/easing.js"></script>
+				<script src="js/colors.js"></script>
+				<script src="js/popper.min.js"></script>
+				<script src="js/bootstrap-datepicker.js"></script>
+				<script src="js/jquery.nav.js"></script>
+				<script src="js/slicknav.min.js"></script>
+				<script src="js/jquery.scrollUp.min.js"></script>
+				<script src="js/niceselect.js"></script>
+				<script src="js/tilt.jquery.min.js"></script>
+				<script src="js/owl-carousel.js"></script>
+				<script src="js/jquery.counterup.min.js"></script>
+				<script src="js/steller.js"></script>
+				<script src="js/wow.min.js"></script>
+				<script src="js/jquery.magnific-popup.min.js"></script>
+				<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/main.js"></script>
+	</body>
+
+</html>
