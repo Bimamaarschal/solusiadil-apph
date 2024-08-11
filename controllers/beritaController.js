@@ -1,5 +1,4 @@
 const axios = require('axios');
-const path = require('path');
 
 exports.beritabaruData = async (req, res) => {
   const {
@@ -29,6 +28,7 @@ exports.beritabaruData = async (req, res) => {
         tanggal,
       }
     );
+
     if (response.status === 201) {
       res.send(`
         <html>
@@ -65,6 +65,7 @@ exports.beritabaruData = async (req, res) => {
     `);
   }
 };
+
 
 exports.getDataberita = async (req, res) => {
     try {
