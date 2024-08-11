@@ -27,6 +27,10 @@ router.get("/faq", (req, res) => {
   res.render("faq");
 });
 
+router.get("/sop", (req, res) => {
+  res.render("sop");
+});
+
 router.get("/gabung", cekLoginMasuk, (req, res) => {
   res.render("gabung");
 });

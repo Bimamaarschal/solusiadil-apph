@@ -6,7 +6,7 @@ exports.panduanbaruData = async (req, res) => {
     email = "Kosong",
     gambar = "Kosong",
     id_admin = "Kosong",
-    id_apph = "Kosong",
+    id_apph,
     id_lai = "Kosong",
     id_panduan,
     id_uu = "Kosong",

@@ -8,7 +8,8 @@ router.get("/dataaturan",  cekJWT, aturanController.getDataaturan);
 router.get("/tulisaturan",  cekJWT, aturanController.getTulisaturan);
 router.get("/lihataturan", cekJWT, aturanController.aturanlihatData);
 router.get('/bacaaturan', cekJWT,aturanController.aturanbacaData);
+router.get('/hapus', cekJWT, aturanController.hapusData);
 
-router.post('/kirimaturan', upload.single('isi_2'), aturanController.aturanbaruData);
+router.post('/kirimaturan', upload.single('dokumen'), aturanController.aturanbaruData);
 
 module.exports = router;

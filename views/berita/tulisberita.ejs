@@ -10,7 +10,7 @@
 
 	<body>
 
-		<%- include('../partials/header', { activePage: 'dataaturan' }) %>
+		<%- include('../partials/header', { activePage: 'databerita' }) %>
 			<section class="news-single section" style="padding-top: 5px;">
 				<div class="container">
 					<div class="row"></div>
@@ -20,19 +20,19 @@
 								<div class="col-12">
 									<div class="comments-form">
 										<h1 style="font-size: 18px;"><i style="font-size: 25px; padding-right: 15px;"
-												class="fa-solid fa-scale-balanced"></i> Peraturan Hukum Baru</h1>
+												class="fa-solid fa-scale-balanced"></i> Berita Hukum Baru</h1>
 									</div>
 								</div>
 							</div>
 						</div>
-						<form action="/kirimaturan" method="POST" enctype="multipart/form-data">
+						<form action="/kirimberita" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-12 col-12">
 								<div class="row">
 									<div class="col-12">
 										<div class="comments-form">
 											<div class="d-flex justify-content-between align-items-center">
 												<h2 style="display: inline;">
-													Peraturan Hukum Baru
+													Berita Hukum Baru
 												</h2>
 												<i style="font-size: 15px;" class="fa-solid fa-info-circle"
 													title="Data tidak dapat diubah"></i>
@@ -40,10 +40,10 @@
 											<div class="row">
 												<div class="col-lg-6 col-md-6 col-12">
 													<div class="form-group position-relative">
-														<small>ID aturan</small>
+														<small>ID berita</small>
 														<div class="input-icon">
 															<i class="fa-solid fa-key"></i>
-															<input id="id_uu" name="id_uu"
+															<input id="id_berita" name="id_berita"
 																oninput="validateLength(this)" readonly>
 														</div>
 														<small id="error-message" style="color:red; display:none;">ID
@@ -107,12 +107,12 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="comments-form">
-											<h2 style="display: inline;"> Data Peraturan
+											<h2 style="display: inline;"> Data Berita
 											</h2> <br><br>
 											<div class="row">
 												<div class="col-lg-12 col-md-6 col-12">
 													<div class="form-group">
-														<small>Judul Lengkap Peraturan</small>
+														<small>Judul Lengkap Berita</small>
 														<div class="input-icon">
 															<input id="judul" name="judul" type="text"
 																oninput="validateJudul(this)" required>
@@ -125,21 +125,9 @@
 												</div>
 												<div class="col-lg-12 col-md-6 col-12">
 													<div class="form-group">
-														<small>Di Kelurakan Oleh</small>
+														<small>Keterangan</small>
 														<div class="input-icon">
-															<input id="oleh" name="oleh" type="text"
-																oninput="validateReferensi(this)" required>
-															<small id="error-message-keterangan"
-																style="color:red; display:none;">Tidak lebih dari 550
-																karakter</small>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-12 col-md-6 col-12">
-													<div class="form-group">
-														<small>Jenis Peraturan</small>
-														<div class="input-icon">
-															<input id="jenis" name="jenis" type="text"
+															<input id="keterangan" name="keterangan" type="text"
 																oninput="validateUU(this)" required>
 															<small id="error-message-undangundang"
 																style="color:red; display:none;">Tidak lebih dari 550
@@ -147,66 +135,16 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-12 col-md-6 col-12">
-													<div class="form-group">
-														<small>No Peraturan</small>
+												<div class="col-lg-12 col-md-12 col-12">
+													<div class="form-group message">
+														<small>Isi Berita</small>
 														<div class="input-icon">
-															<input id="no" name="no" type="text"
-																oninput="validateReferensi(this)" required>
-															<small id="error-message-keterangan"
-																style="color:red; display:none;">Tidak lebih dari 550
-																karakter</small>
+															<textarea id="froala-editor" name="isi"
+																placeholder="Tolong, pastikan kebenaran dan keakuratan isi berdasarkan peraturan perundang-udangan yang berlaku dan relevan"> </textarea>
 														</div>
 													</div>
 												</div>
-												<div class="col-lg-12 col-md-6 col-12">
-													<div class="form-group">
-														<small>Tahun</small>
-														<div class="input-icon">
-															<input id="tahun" name="tahun" type="text"
-																oninput="validateReferensi(this)" required>
-															<small id="error-message-keterangan"
-																style="color:red; display:none;">Tidak lebih dari 550
-																karakter</small>
-														</div>
-													</div>
-												</div>
-												<div class="col-lg-12 col-md-6 col-12">
-													<div class="form-group">
-														<small>Tentang</small>
-														<div class="input-icon">
-															<input id="tentang" name="tentang" type="text"
-																oninput="validateReferensi(this)" required>
-															<small id="error-message-keterangan"
-																style="color:red; display:none;">Tidak lebih dari 550
-																karakter</small>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-12 col-12">
-								<div class="row">
-									<div class="col-12">
-										<div class="comments-form">
-											<h2 style="display: inline;"> Keterangan Tambahan
-											</h2> <br><br>
-											<div class="row">
-												<div class="col-lg-12 col-md-6 col-12">
-													<div class="form-group">
-														<div class="input-icon">
-															<input id="keterangan" name="keterangan" type="text"
-																oninput="validateJudul(this)" required>
-															<small id="error-message-judul"
-																style="color:red; display:none;">Hanya
-																Alfabet A-Z
-																dan tidak lebih dari 150 karakter</small>
-														</div>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -218,17 +156,29 @@
 										<div class="comments-form">
 											<div class="d-flex justify-content-between align-items-center">
 												<h2 style="display: inline;">
-													Dokumen Peraturan PDF
+													Jenis Berita
 												</h2>
 											</div>
 											<div class="row">
 												<div class="col-lg-12 col-md-6 col-12">
 													<div class="form-group">
-														<div class="input-icon">
-															<i class="fa-solid fa-file-pdf"></i>
-															<input type="file" id="dokumen" name="dokumen"
-																accept="application/pdf" required>
-														</div>
+														<small>Jenis Berita yang Di Siarkan</small>
+														<select class="form-control wide" id="tag" name="tag" required>
+															<option value="Pilih" disabled selected>Pilih</option>
+															<option value="Hukum Masyarakat">Hukum Masyarakat</option>
+															<option value="Hukum Perdata">Hukum Perdata</option>
+															<option value="Hukum Pidana">Hukum Pidana</option>
+															<option value="Hukum Adat">Hukum Adat</option>
+															<option value="Hukum Agama">Hukum Agama</option>
+															<option value="Hukum Niaga">Hukum Niaga</option>
+															<option value="Hukum Buruh">Hukum Buruh</option>
+															<option value="Hak">Hak</option>
+															<option value="Kewajiban">Kewajiban</option>
+															<option value="Pemerintah">Pemerintah</option>
+															<option value="Anggaran">Anggaran</option>
+															<option value="Korupsi">Korupsi</option>
+															<option value="Lainnya">Lainnya</option>
+														</select>
 													</div>
 												</div>
 											</div>
@@ -325,7 +275,7 @@
 						fileNameSpan.textContent = this.files[0].name || 'Tidak ada file yang dipilih';
 					});
 				</script>
-				<script src="function/aturan.js"></script>
+				<script src="function/berita.js"></script>
 				<script src="js/jquery.min.js"></script>
 				<script src="js/jquery-migrate-3.0.0.js"></script>
 				<script src="js/jquery-ui.min.js"></script>

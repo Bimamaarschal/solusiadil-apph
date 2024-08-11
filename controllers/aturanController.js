@@ -3,56 +3,51 @@ const path = require('path');
 
 exports.aturanbaruData = async (req, res) => {
   const {
-    email = "Kosong",
-    gambar = "Kosong",
-    id_admin = "Kosong",
-    id_apph = "Kosong",
-    id_lai = "Kosong",
-    id_uu = "Kosong",
-    isi_1,
+    id_apph,
+    id_uu,
+    jenis,
     judul,
     keterangan,
-    nama_lai,
     nama_apph,
+    no,
+    oleh,
     status = "Terbit",
+    tahun,
     tanggal,
-    undangundang,
+    tentang,
   } = req.body;
 
   const filePath = req.file ? req.file.path : null;
-  const isi_2 = filePath ? path.posix.relative('public', filePath).replace(/\\/g, '/') : null;
-  if (!isi_2) {
+  const dokumen = filePath ? path.posix.relative('public', filePath).replace(/\\/g, '/') : null;
+  if (!dokumen) {
     return res.status(400).send('File PDF diperlukan');
   }
   try {
     const response = await axios.post(
       "https://solusiadil-api.vercel.app/undangundang",
       {
-        email,
-        gambar,
-        id_admin,
+        dokumen,
         id_apph,
-        id_lai,
         id_uu,
-        id_uu,
-        isi_1,
-        isi_2,
+        jenis,
         judul,
         keterangan,
-        nama_lai,
         nama_apph,
+        no,
+        oleh,
         status,
+        tahun,
         tanggal,
-        undangundang,
+        tentang,
       }
     );
     if (response.status === 201) {
       res.send(`
         <html>
           <head>
-            <title>aturan Data Success</title>
+            <title>Peraturan Data Success</title>
             <script>
-              alert("aturan berhasil diajukan, akan berpindah ke halaman Awal");
+              alert("Peraturan berhasil diajukan, akan berpindah ke halaman Awal");
               window.location.href = "/dataaturan";
             </script>
           </head>
@@ -69,7 +64,7 @@ exports.aturanbaruData = async (req, res) => {
     res.send(`
       <html>
         <head>
-          <title>aturan Gagal</title>
+          <title>Peraturan Gagal</title>
           <script>
             alert("Gagal mengirim data karena ${error.message}");
             window.location.href = "/tulisaturan";
@@ -123,7 +118,7 @@ exports.getDataaturan = async (req, res) => {
   
     } catch (error) {
       console.error(error);
-      res.status(500).send('Terjadi kesalahan dalam mengambil data aturan.');
+      res.status(500).send('Terjadi kesalahan dalam mengambil data Peraturan.');
     }
   };
 
@@ -142,6 +137,24 @@ exports.getDataaturan = async (req, res) => {
       res.render('aturan/bacaaturan', { aturan: formattedaturan, aturanData2, id_apph, nama_apph });
     } catch (error) {
       console.error(error);
-      res.status(500).send('Terjadi kesalahan dalam mengambil data aturan.');
+      res.status(500).send('Terjadi kesalahan dalam mengambil data Peraturan.');
+    }
+  };
+
+  exports.hapusData = async (req, res) => {
+    try {
+      const id_uu = req.query.id;
+      const { id_apph, nama_apph } = req.apph;
+      const response = await axios.delete(`https://solusiadil-api.vercel.app/undangundang/idundangundang/${id_uu}`);
+      
+      if (response.status === 200) {
+        res.redirect('/dataaturan');
+      } else {
+        throw new Error('Gagal menghapus data');
+      }
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Terjadi kesalahan dalam menghapus data Peraturan.');
     }
   };
