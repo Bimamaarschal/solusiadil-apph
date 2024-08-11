@@ -38,13 +38,10 @@
 													Dasar Hukum : <%= blog.undang_undang %>
 												</p>
 											</blockquote>
-											<p>
-												<%= blog.isi %>
-											</p>
+											<p id="formatted-dsa"> </p>
 											<blockquote class="overlay">
 												<p>
 													Referensi : <%= blog.doc_pendukung %>
-
 												</p>
 											</blockquote>
 										</div>
@@ -158,6 +155,20 @@
 							imgElement.src = "blog/" + randomNumber + ".png";
 						}
 					</script>
+					<script>
+						function convertHtmlToTextWithFormatting(html) {
+							const parser = new DOMParser();
+							const doc = parser.parseFromString(html, 'text/html');
+							return doc.body.innerHTML;
+						}
+						const htmlContent = `<%- blog.isi %>`;
+						const formattedTextElement = document.getElementById('formatted-dsa');
+						formattedTextElement.innerHTML = convertHtmlToTextWithFormatting(htmlContent);
+						formattedTextElement.style.setProperty('color', 'black', 'important');
+					
+						console.log(window.getComputedStyle(formattedTextElement).color);
+					</script>
+					
 	</body>
 
 </html>

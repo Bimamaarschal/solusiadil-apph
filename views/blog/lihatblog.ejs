@@ -156,10 +156,7 @@
 													<div class="form-group message">
 														<small>Tulis Blog Terkait Hukum</small>
 														<div class="input-icon">
-															<i class="fa-solid fa-pen-nib"></i>
-															<textarea style="height: 220px;" name="isi" rows="5"
-																placeholder="Tolong, pastikan kebenaran dan keakuratan isi berdasarkan peraturan perundang-udangan yang berlaku dan relevan"
-																readonly> <%= blog.isi %></textarea>
+															<p id="formatted-dsa"> </p>
 														</div>
 													</div>
 												</div>
@@ -184,6 +181,19 @@
 
 				<%- include('../partials/js') %>
 					<script src="function/blog.js"></script>
+					<script>
+						function convertHtmlToTextWithFormatting(html) {
+							const parser = new DOMParser();
+							const doc = parser.parseFromString(html, 'text/html');
+							return doc.body.innerHTML;
+						}
+						const htmlContent = `<%- blog.isi %>`;
+						const formattedTextElement = document.getElementById('formatted-dsa');
+						formattedTextElement.innerHTML = convertHtmlToTextWithFormatting(htmlContent);
+						formattedTextElement.style.setProperty('color', 'black', 'important');
+					
+						console.log(window.getComputedStyle(formattedTextElement).color);
+					</script>
 	</body>
 
 </html>
