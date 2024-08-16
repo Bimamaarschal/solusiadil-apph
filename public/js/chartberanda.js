@@ -66,7 +66,7 @@ async function createChart(apiUrl, ctx, labels, backgroundColors) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    createChart(apiUrl1, document.getElementById('statusChart1').getContext('2d'), ['Selesai', 'Diproses', 'Selesai'], ['#FF6384', '#36A2EB', '#FFCE56']);
+    createChart(apiUrl1, document.getElementById('statusChart1').getContext('2d'), ['Selesai', 'Diproses', 'Menunggu'], ['#FF6384', '#36A2EB', '#FFCE56']);
     createChart(apiUrl2, document.getElementById('statusChart2').getContext('2d'), ['Dikirim', 'Diterima', 'Menunggu'], ['#4BC0C0', '#FF9F40', '#9966FF']);
     fetchMarqueeData();
 });
