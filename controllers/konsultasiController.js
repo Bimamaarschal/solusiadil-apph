@@ -29,7 +29,7 @@ exports.getDetailKonsultasi = async (req, res) => {
     }
   };
 
-  exports.getDetailKonsultasi2 = async (req, res) => {
+exports.getDetailKonsultasi2 = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
       const { id_apph, nama_apph } = req.apph;
@@ -57,7 +57,6 @@ exports.getDetailKonsultasi3 = async (req, res) => {
         throw new Error('Data konsultasi tidak ditemukan');
       }
       res.render('konsultasi/konsultasilihat', { konsultasi: formattedKonsultasi, id_apph, nama_apph });
-  
     } catch (error) {
       console.error(error);
       res.status(500).send('Terjadi kesalahan dalam mengambil data konsultasi.');
