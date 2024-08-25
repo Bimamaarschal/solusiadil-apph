@@ -1,6 +1,35 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <%- include('../partials/head') %>
+<style>
+	.pagination-container {
+		display: grid;
+		justify-content: end; 
+}
+	.pagination a {
+    margin: 0 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a.btn-outline-primary {
+    border: 1px solid black;
+    color: black;
+    background-color: transparent;
+}
+
+.pagination a.btn-primary {
+    background-color: black;
+    color: white;
+}
+
+.pagination a.btn:hover {
+    background-color: black;
+    color: white;
+}
+</style>
 	<body>
 		<%- include('../partials/header', { activePage: 'konsultasi' }) %>
 			<section class="news-single section" style="padding-top: 5px;">
@@ -16,74 +45,82 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-lg-12 col-2">
+							<div class="row">
+								<div class="col-12">
+									<div class="comments-form">	
+										<div class="form-group">
+											<input type="text" id="searchInput" placeholder="Cari data konsultasi, masukan ID" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-8 col-6">
 							<div class="row">
 								<div class="col-12">
 									<div class="comments-form">
-										<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Seluruh Konsultasi</h1>
-										<% konsultasiData.sort((a, b)=> new Date(a.tanggal) - new Date(b.tanggal));
-											if (konsultasiData.length > 0) {
-											%>
-											<table>
-												<thead>
-													<tr>
-														<th>ID Konsultasi</th>
-														<th>Status</th>
-														<th>Nama Masyarakat</th>
-														<th>Tanggal</th>
-														<th>APPH</th>
-														<th>Aksi</th>
-													</tr>
-												</thead>
-												<tbody>
-													<% konsultasiData.forEach(konsultasi=> { %>
-														<tr>
-															<td>
-																<%= konsultasi.id_konsultasi %>
-															</td>
-															<td>
-																<%= konsultasi.status %>
-															</td>
-															<td>
-																<%= konsultasi.nama_mast %>
-															</td>
-															<td>
-																<%= konsultasi.tanggal %>
-															</td>
-															<td>
-																<%= konsultasi.id_apph %>
-															</td>
-															<td>
-																<form
-																	action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>"
-																	method="get">
-																	<input type="hidden" name="id"
-																		value="<%= konsultasi.id_konsultasi %>">
-																	<% if (konsultasi.status==='Menunggu' ) { %>
-																		<button type="submit"
-																			class="btn-jawab">Jawab</button>
-																		<% } else if (konsultasi.status==='Diproses' ) {
-																			%>
-																			<button type="submit"
-																				class="btn-lihat">Lanjut</button>
-																			<% } else if (konsultasi.status==='Selesai'
-																				) { %>
-																				<button type="submit"
-																					class="btn-selesai">Selesai</button>
-																				<% } else if
-																					(konsultasi.status==='Gagal' ) { %>
-																					<button type="submit"
-																						class="btn-gagal">Lihat</button>
-																					<% } %>
-																</form>
-															</td>
-														</tr>
-														<% }); %>
-												</tbody>
-											</table>
-											<% } else { %>
-												<p>Tidak ada data konsultasi yang tersedia.</p>
-												<% } %>
+										<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Riwayat Seluruh Konsultasi</h1>
+						
+										<% if (konsultasiData.length > 0) { %>
+										<table id="dataTable">
+											<thead>
+												<tr>
+													<th>ID Konsultasi</th>
+													<th>Status</th>
+													<th>Nama Masyarakat</th>
+													<th>Tanggal</th>
+													<th>APPH</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% konsultasiData.forEach(konsultasi => { %>
+												<tr>
+													<td><%= konsultasi.id_konsultasi %></td>
+													<td><%= konsultasi.status %></td>
+													<td><%= konsultasi.nama_mast %></td>
+													<td><%= konsultasi.tanggal %></td>
+													<td><%= konsultasi.id_apph %></td>
+													<td>
+														<form action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>"
+															method="get">
+															<input type="hidden" name="id" value="<%= konsultasi.id_konsultasi %>">
+															<% if (konsultasi.status === 'Menunggu') { %>
+															<button type="submit" class="btn-jawab">Jawab</button>
+															<% } else if (konsultasi.status === 'Diproses') { %>
+															<button type="submit" class="btn-lihat">Lanjut</button>
+															<% } else if (konsultasi.status === 'Selesai') { %>
+															<button type="submit" class="btn-selesai">Selesai</button>
+															<% } else if (konsultasi.status === 'Gagal') { %>
+															<button type="submit" class="btn-gagal">Lihat</button>
+															<% } %>
+														</form>
+													</td>
+												</tr>
+												<% }); %>
+											</tbody>
+										</table>
+						
+										<% if (totalPages > 1) { %>
+											<div class="pagination-container">
+												<div class="pagination">
+													<% if (page > 1) { %>
+													<a href="?page=<%= page - 1 %>" class="btn btn-outline-primary">Sebelumnya</a>
+													<% } %>
+													<% for (let i = 1; i <= totalPages; i++) { %>
+													<a href="?page=<%= i %>" class="btn <%= i === page ? 'btn-primary' : 'btn-outline-primary' %>"><%= i %></a>
+													<% } %>
+													<% if (page < totalPages) { %>
+													<a href="?page=<%= page + 1 %>" class="btn btn-outline-primary">Berikutnya</a>
+													<% } %>
+												</div>
+											</div>
+										<% } %>
+						
+										<% } else { %>
+										<p>Tidak ada data konsultasi yang tersedia.</p>
+										<% } %>
 									</div>
 								</div>
 							</div>
@@ -91,7 +128,7 @@
 						<div class="col-lg-4 col-12">
 							<div class="main-sidebar">
 								<div class="single-widget recent-post">
-									<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Data Konsultasi
+									<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Data Konsultasi <br> halaman <%= page %>
 									</h3>
 									<br>
 									<div class="content">
@@ -138,89 +175,65 @@
 							<div class="row">
 								<div class="col-12">
 									<div class="comments-form">
-										<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Konsultasi Oleh Anda
-										</h1>
-										<% const filteredData=konsultasiData.filter(konsultasi=> konsultasi.id_apph ===
-											id_apph);
-											filteredData.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
-											if (filteredData.length > 0) {
-											%>
-											<table>
-												<thead>
+										<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Konsultasi Oleh Anda</h1>
+										<% 
+										const filteredData = konsultasiData.filter(konsultasi => konsultasi.id_apph === id_apph);
+										filteredData.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+										if (filteredData.length > 0) {
+										%>
+										<table>
+											<thead>
+												<tr>
+													<th>ID Konsultasi</th>
+													<th>Status</th>
+													<th>Nama Masyarakat</th>
+													<th>Tanggal</th>
+													<th>APPH</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% filteredData.forEach(konsultasi => { %>
 													<tr>
-														<th>ID Konsultasi</th>
-														<th>Status</th>
-														<th>Nama Masyarakat</th>
-														<th>Tanggal</th>
-														<th>APPH</th>
-														<th>Aksi</th>
+														<td><%= konsultasi.id_konsultasi %></td>
+														<td><%= konsultasi.status %></td>
+														<td><%= konsultasi.nama_mast %></td>
+														<td><%= konsultasi.tanggal %></td>
+														<td><%= konsultasi.id_apph %></td>
+														<td>
+															<form action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>" method="get">
+																<input type="hidden" name="id" value="<%= konsultasi.id_konsultasi %>">
+																<% if (konsultasi.status === 'Menunggu') { %>
+																	<button type="submit" class="btn-jawab">Jawab</button>
+																<% } else if (konsultasi.status === 'Diproses') { %>
+																	<button type="submit" class="btn-lihat">Lanjut</button>
+																<% } else if (konsultasi.status === 'Selesai') { %>
+																	<button type="submit" class="btn-selesai">Selesai</button>
+																<% } else if (konsultasi.status === 'Gagal') { %>
+																	<button type="submit" class="btn-gagal">Lihat</button>
+																<% } %>
+															</form>
+														</td>
 													</tr>
-												</thead>
-												<tbody>
-													<% filteredData.forEach(konsultasi=> { %>
-														<tr>
-															<td>
-																<%= konsultasi.id_konsultasi %>
-															</td>
-															<td>
-																<%= konsultasi.status %>
-															</td>
-															<td>
-																<%= konsultasi.nama_mast %>
-															</td>
-															<td>
-																<%= konsultasi.tanggal %>
-															</td>
-															<td>
-																<%= konsultasi.id_apph %>
-															</td>
-															<td>
-																<form
-																	action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>"
-																	method="get">
-																	<input type="hidden" name="id"
-																		value="<%= konsultasi.id_konsultasi %>">
-																	<% if (konsultasi.status==='Menunggu' ) { %>
-																		<button type="submit"
-																			class="btn-jawab">Jawab</button>
-																		<% } else if (konsultasi.status==='Diproses' ) {
-																			%>
-																			<button type="submit"
-																				class="btn-lihat">Lanjut</button>
-																			<% } else if (konsultasi.status==='Selesai'
-																				) { %>
-																				<button type="submit"
-																					class="btn-selesai">Selesai</button>
-																				<% } else if
-																					(konsultasi.status==='Gagal' ) { %>
-																					<button type="submit"
-																						class="btn-gagal">Lihat</button>
-																					<% } %>
-																</form>
-															</td>
-														</tr>
-														<% }); %>
-												</tbody>
-											</table>
-											<% } else { %>
-												<p>Tidak ada data konsultasi yang tersedia.</p>
-												<% } %>
+												<% }); %>
+											</tbody>
+										</table>
+										<% } else { %>
+											<p>Tidak ada data konsultasi yang tersedia.</p>
+										<% } %>
 									</div>
 								</div>
 							</div>
 						</div>
-
 						<div class="col-lg-4 col-12">
 							<div class="main-sidebar">
 								<div class="single-widget recent-post">
 									<h3 class="title" style="padding-bottom: 0px; margin-bottom: 0px;">Data Konsultasi
-										Anda</h3>
+										Anda <br> halaman <%= page %></h3>
 									<br>
 									<div class="content">
 										<ul class="comment" style="font-size: 12px; ">
-											<% const filteredData2=konsultasiData.filter(konsultasi=> konsultasi.id_apph
-												===
-												id_apph);
+											<% const filteredData2=konsultasiData.filter(konsultasi=> konsultasi.id_apph === id_apph);
 												const totalKonsultasi = filteredData2.length;
 												const jumlahKonsultasiProses = filteredData2.filter(konsultasi =>
 												konsultasi.status === 'Diproses').length;
@@ -263,5 +276,35 @@
 			</section>
 			<%- include('../partials/footer') %>
 			<%- include('../partials/js') %>
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					const searchInput = document.getElementById('searchInput');
+					const table = document.getElementById('dataTable');
+					const rows = table.querySelectorAll('tbody tr');
+			
+					searchInput.addEventListener('input', function() {
+						const query = searchInput.value.toLowerCase();
+			
+						rows.forEach(row => {
+							const cells = row.getElementsByTagName('td');
+							let found = false;
+			
+							for (let i = 0; i < cells.length; i++) {
+								const cellText = cells[i].textContent.toLowerCase();
+								if (cellText.includes(query)) {
+									found = true;
+									break;
+								}
+							}
+			
+							if (found) {
+								row.style.display = '';
+							} else {
+								row.style.display = 'none';
+							}
+						});
+					});
+				});
+			</script>
 	</body>
 </html>

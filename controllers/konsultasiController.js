@@ -1,17 +1,33 @@
 const axios = require('axios');
 
+//Fungsi Ke Halaman Konsultasi
 exports.getKonsultasi = async (req, res) => {
-    try {
+  try {
       const { id_apph, nama_apph } = req.apph;
       const response = await axios.get('https://solusiadil-api.vercel.app/konsultasi');
       const konsultasiData = Object.values(response.data);
-      res.render('konsultasi/konsultasi', { konsultasiData, id_apph, nama_apph });
-    } catch (error) {
+      const itemsPerPage = 15;
+      const page = parseInt(req.query.page) || 1;
+      const totalItems = konsultasiData.length;
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = page * itemsPerPage;
+      const sortedKonsultasiData = konsultasiData.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+      const paginatedKonsultasiData = sortedKonsultasiData.slice(startIndex, endIndex);
+      res.render('konsultasi/konsultasi', {
+          konsultasiData: paginatedKonsultasiData,
+          id_apph,
+          nama_apph,
+          page,
+          totalPages
+      });
+  } catch (error) {
       console.error('Error fetching konsultasi data:', error);
       res.status(500).send('Error fetching konsultasi data');
-    }
-  };
+  }
+};
 
+//Fungsi Ke Halaman Detail Konsultasi
 exports.getDetailKonsultasi = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
@@ -29,6 +45,7 @@ exports.getDetailKonsultasi = async (req, res) => {
     }
   };
 
+  //Fungsi Ke Halaman Detail Konsultasi di Tanggapi
 exports.getDetailKonsultasi2 = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
@@ -46,6 +63,7 @@ exports.getDetailKonsultasi2 = async (req, res) => {
     }
   };
 
+//Fungsi Ke Halaman Detail Konsultasi Selesai
 exports.getDetailKonsultasi3 = async (req, res) => {
     try {
       const id_konsultasi = req.query.id;
@@ -62,7 +80,8 @@ exports.getDetailKonsultasi3 = async (req, res) => {
       res.status(500).send('Terjadi kesalahan dalam mengambil data konsultasi.');
     }
   };
-  
+
+//Fungsi Ke Halaman Konsultasi 1
 exports.updateKonsultasi = async (req, res) => {
     try {
       const konsultasiId = req.body.id_konsultasi;
@@ -94,6 +113,7 @@ exports.updateKonsultasi = async (req, res) => {
     }
   };
 
+//Fungsi Ke Halaman Konsultasi 1
 exports.updateKonsultasi1 = async (req, res) => {
     try {
       const status = Array.isArray(req.body.status) ? req.body.status[req.body.status.length - 1] : req.body.status;
