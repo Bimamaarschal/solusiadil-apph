@@ -52,7 +52,7 @@ exports.blogbaruData = async (req, res) => {
       isi,
       judul,
       nama_apph,
-      status = "Diterima",
+      status = "Menunggu",
       tag = "Kosong",
       tanggal,
       undang_undang,
@@ -152,6 +152,24 @@ exports.getDatablog = async (req, res) => {
         throw new Error('Data blog tidak ditemukan');
       }
       res.render('blog/lihatblog', { blog: formattedBlog, id_apph, nama_apph });
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Terjadi kesalahan dalam mengambil data blog.');
+    }
+  };
+
+  exports.bloglihatData2 = async (req, res) => {
+    try {
+      const id_blog = req.query.id;
+      const { id_apph, nama_apph } = req.apph;
+      const response = await axios.get(`https://solusiadil-api.vercel.app/blogs/idblog/${id_blog}`);
+      const blogData = response.data;
+      const formattedBlog = Object.values(blogData)[0];
+      if (!formattedBlog) {
+        throw new Error('Data blog tidak ditemukan');
+      }
+      res.render('blog/lihatblog2', { blog: formattedBlog, id_apph, nama_apph });
   
     } catch (error) {
       console.error(error);

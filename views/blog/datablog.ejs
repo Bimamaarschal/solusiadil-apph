@@ -25,72 +25,48 @@
 						<div class="col-lg-8 col-6">
 							<div class="row">
 								<div class="col-12">
-
 									<div class="comments-form">
-										<h1 style="font-size: 18px; padding-bottom: 25px;"> Data Seluruh Blog</h1>
-										<% blogData.sort((a, b)=> new Date(a.tanggal) - new Date(b.tanggal));
-											if (blogData.length > 0) {
-											%>
-											<table>
-												<thead>
+										<h1 style="font-size: 18px; padding-bottom: 25px;">Data Seluruh Blog - Terbit</h1>
+										<% 
+										const acceptedBlogs = blogData.filter(blog => blog.status === 'Diterima');
+										acceptedBlogs.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+										if (acceptedBlogs.length > 0) {
+										%>
+										<table>
+											<thead>
+												<tr>
+													<th>ID Blog</th>
+													<th>ID APPH</th>
+													<th>Status</th>
+													<th>Tanggal</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% acceptedBlogs.forEach(blog => { %>
 													<tr>
-														<th>ID Blog</th>
-														<th>ID APPH</th>
-														<th>Status</th>
-														<th>Tanggal</th>
-														<th>Aksi</th>
+														<td><%= blog.id_blog %></td>
+														<td><%= blog.id_apph %></td>
+														<td><%= blog.status %></td>
+														<td><%= blog.tanggal %></td>
+														<td>
+															<form action="/lihatblog" method="get">
+																<input type="hidden" name="id" value="<%= blog.id_blog %>">
+																<button type="submit" class="btn-selesai">Diterima - Terbit</button>
+															</form>
+														</td>
 													</tr>
-												</thead>
-												<tbody>
-													<% blogData.forEach(blog=> { %>
-														<tr>
-															<td>
-																<%= blog.id_blog %>
-															</td>
-															<td>
-																<%= blog.id_apph %>
-															</td>
-															<td>
-																<%= blog.status %>
-															</td>
-															<td>
-																<%= blog.tanggal %>
-															</td>
-															<td>
-																<form
-																	action="<%= blog.status === 'Menunggu' ? '/blogdt' : (blog.status === 'Diproses' ? '/blogdt2' : '/lihatblog') %>"
-																	method="get">
-																	<input type="hidden" name="id"
-																		value="<%= blog.id_blog %>">
-																	<% if (blog.status==='Menunggu' ) { %>
-																		<button type="submit"
-																			class="btn-jawab">Jawab</button>
-																		<% } else if (blog.status==='Diproses' ) { %>
-																			<button type="submit"
-																				class="btn-lihat">Lanjut</button>
-																			<% } else if (blog.status==='Diterima' ) {
-																				%>
-																				<button type="submit"
-																					class="btn-selesai">Diterima -
-																					Lihat</button>
-																				<% } else if (blog.status==='Gagal' ) {
-																					%>
-																					<button type="submit"
-																						class="btn-gagal">Lihat</button>
-																					<% } %>
-																</form>
-															</td>
-														</tr>
-														<% }); %>
-												</tbody>
-											</table>
-											<% } else { %>
-												<p>Tidak ada data blog yang tersedia.</p>
-												<% } %>
+												<% }); %>
+											</tbody>
+										</table>
+										<% } else { %>
+											<p>Tidak ada data blog yang diterima.</p>
+										<% } %>
 									</div>
 								</div>
 							</div>
 						</div>
+
 						<div class="col-lg-4 col-12">
 							<div class="main-sidebar">
 								<div class="single-widget recent-post">
@@ -137,6 +113,61 @@
 													</i>
 												</li>
 										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-12 col-12">
+							<div class="row">
+								<div class="col-12">
+									<div class="comments-form">
+										<h1 style="font-size: 18px; padding-bottom: 25px;">Tulisan Blog Anda</h1>
+										<% 
+											const filteredBlogData = blogData.filter(blog => blog.id_apph === id_apph); 
+											filteredBlogData.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+											if (filteredBlogData.length > 0) {
+										%>
+										<table>
+											<thead>
+												<tr>
+													<th>ID Blog</th>
+													<th>ID APPH</th>
+													<th>Status</th>
+													<th>Tanggal</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% filteredBlogData.forEach(blog => { %>
+													<tr>
+														<td><%= blog.id_blog %></td>
+														<td><%= blog.id_apph %></td>
+														<td><%= blog.status %></td>
+														<td><%= blog.tanggal %></td>
+														<td>
+															<form
+																action="<%= blog.status === 'Menunggu' ? '/lihatblog2' : (blog.status === 'Diproses' ? '/lihatblog2' : '/lihatblog') %>"
+																method="get">
+																<input type="hidden" name="id" value="<%= blog.id_blog %>">
+																<% if (blog.status === 'Menunggu') { %>
+																	<button type="submit" class="btn-jawab">Lihat</button>
+																<% } else if (blog.status === 'Diproses') { %>
+																	<button type="submit" class="btn-lihat">Lihat</button>
+																<% } else if (blog.status === 'Diterima') { %>
+																	<button type="submit" class="btn-selesai">Diterima - Terbit</button>
+																<% } else if (blog.status === 'Gagal') { %>
+																	<button type="submit" class="btn-gagal">Lihat</button>
+																<% } %>
+															</form>
+														</td>
+													</tr>
+												<% }); %>
+											</tbody>
+										</table>
+										<% } else { %>
+											<p>Tidak ada data blog yang tersedia.</p>
+										<% } %>
 									</div>
 								</div>
 							</div>
