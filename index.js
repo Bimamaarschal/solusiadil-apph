@@ -7,6 +7,8 @@ const panduanRoutes = require("./routes/panduanRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const lupaRoutes = require("./routes/lupaRoutes");
 const aturanRoutes = require("./routes/aturanRoutes");
+const beritaRoutes = require("./routes/beritaRoutes");
+const sertifikatRoutes = require("./routes/sertifikatRoutes");
 const path = require("path");
 const app = express();
 
@@ -28,6 +30,8 @@ app.use("/", panduanRoutes);
 app.use("/", blogRoutes);
 app.use("/", lupaRoutes);
 app.use("/", aturanRoutes);
+app.use("/", beritaRoutes);
+app.use("/", sertifikatRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
