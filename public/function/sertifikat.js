@@ -71,8 +71,11 @@ function setTodayDate() {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = months[today.getMonth()];
     var yyyy = today.getFullYear();
+    var hours = String(today.getHours()).padStart(2, '0');
+    var minutes = String(today.getMinutes()).padStart(2, '0');
+    var seconds = String(today.getSeconds()).padStart(2, '0');
 
-    var formattedDate = dayName + ', ' + dd + ' ' + mm + ' ' + yyyy;
+    var formattedDate = ` ${hours}:${minutes}:${seconds} ${dayName}, ${dd} ${mm} ${yyyy}`;
     document.getElementById("tanggal").value = formattedDate;
 }
 

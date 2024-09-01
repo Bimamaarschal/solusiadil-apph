@@ -11,5 +11,6 @@ router.get("/pengajuansertifikat", cekJWT, sertifikatController.sertifikatlihatD
 router.get("/bacasertifikat", cekJWT,sertifikatController.sertifikatbacaData);
 router.get("/hapus", cekJWT, sertifikatController.hapusData);
 router.post("/kirimsertifikat", cekJWT, sertifikatController.sertifikatbaruData);
+router.get("/cetaksertifikat", cekJWT, sertifikatController.sertifikatCetak);
 
 module.exports = router;

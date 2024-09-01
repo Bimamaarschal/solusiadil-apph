@@ -89,38 +89,34 @@
 								<div class="single-widget recent-post">
 									<h3 class="title">Pengajuan Sertifikat</h3>
 									<% 
-									let filteredData = sertifikatData.find(item => item.id_apph === id_apph); 
-									if (filteredData) { 
-									%>
+										let filteredData = sertifikatData[0]; 
+										if (filteredData) { 
+										%>
 										<div class="single-post">
 											<div class="image">
-												<img src="img/favicon.png" alt="#">
+											<img src="img/favicon.png" alt="#">
 											</div>
 											<div class="content">
-												<form action="/pengajuansertifikat" method="GET">
-													<input type="hidden" name="id" value="<%= filteredData.id_sertifikat %>">
-													<h5 style="font-size: 15px;">
-														<button type="submit" style="background:none; border:none; padding:0; font:inherit; cursor:pointer;">
-															Id: <%= filteredData.id_sertifikat %>
-														</button>
-													</h5>
-												</form>
-												<ul class="comment">
-														<%= filteredData.tanggal %>
-													</li>
-													<li><i class="fa-solid fa-spinner" aria-hidden="true"></i>
-														 <%= filteredData.status %>
-													</li>
-												</ul>
+											<form action="/pengajuansertifikat" method="GET">
+												<input type="hidden" name="id" value="<%= filteredData.id_sertifikat %>">
+												<h5 style="font-size: 15px;">
+												<button type="submit" style="background:none; border:none; padding:0; font:inherit; cursor:pointer;">
+													Id: <%= filteredData.id_sertifikat %>
+												</button>
+												</h5>
+											</form>
+											<ul class="comment">
+												<li><%= filteredData.tanggal %></li>
+												<li><i class="fa-solid fa-spinner" aria-hidden="true"></i> <%= filteredData.status %></li>
+											</ul>
 											</div>
 										</div>
-									<% } else { %>
+										<% } else { %>
 										<p>Data tidak ditemukan.</p>
-									<% } %>
+										<% } %>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</section>

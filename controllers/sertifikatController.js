@@ -32,8 +32,6 @@ exports.sertifikatbaruData = async (req, res) => {
     if (hasDiajukan) {
       throw new Error("Tidak bisa menambah data karena sudah ada sertifikat dengan status 'Diajukan'.");
     }
-
-    // Melanjutkan untuk menambahkan data baru
     const response = await axios.post(
       "https://solusiadil-api.vercel.app/sertifikat",
       {
@@ -91,16 +89,22 @@ exports.getDatasertifikat = async (req, res) => {
       const response = await axios.get(
         `https://solusiadil-api.vercel.app/sertifikat/idapph/${id_apph}`
       );
-      const sertifikatObj = response.data;
-      const sertifikatData = sertifikatObj ? Object.values(sertifikatObj) : [];
-      
+      let sertifikatObj = response.data;
+      let sertifikatData = sertifikatObj ? Object.values(sertifikatObj) : [];
+      sertifikatData.sort((a, b) => {
+        let dateA = parseTanggal(a.tanggal);
+        let dateB = parseTanggal(b.tanggal);
+        return dateB - dateA;
+      });
+      console.log('Setelah pengurutan:', sertifikatData);
+
       res.render('sertifikat/datasertifikat', {
         sertifikatData,
         id_apph,
         nama_apph,
       });
     } catch (error) {
-      console.error('Error fetching sertifikat data');
+      console.error('Error fetching sertifikat data:', error);
       res.render('sertifikat/datasertifikat', {
         sertifikatData: [],
         id_apph,
@@ -112,7 +116,20 @@ exports.getDatasertifikat = async (req, res) => {
   }
 };
 
-  exports.getTulissertifikat = async (req, res) => {
+function parseTanggal(tanggalStr) {
+  const [timePart, , datePart, monthStr, yearStr] = tanggalStr.trim().split(' ');
+  const [hours, minutes, seconds] = timePart.split(':').map(Number);
+  const day = parseInt(datePart);
+  const year = parseInt(yearStr);
+  const bulanIndonesia = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  const month = bulanIndonesia.indexOf(monthStr);
+  if (month === -1) {
+    throw new Error('Bulan tidak valid: ' + monthStr);
+  }
+  return new Date(year, month, day, hours, minutes, seconds);
+}
+
+exports.getTulissertifikat = async (req, res) => {
     try {
       const { id_apph, nama_apph } = req.apph;
       const response = await axios.get('https://solusiadil-api.vercel.app/sertifikat');
@@ -195,5 +212,44 @@ exports.getDatasertifikat = async (req, res) => {
     } catch (error) {
       console.error(error);
       res.status(500).send('Terjadi kesalahan dalam menghapus data sertifikat.');
+    }
+  };
+
+  
+  exports.sertifikatCetak = async (req, res) => {
+    try {
+      const id_sertifikat = req.query.id;
+      const sertifikatResponse = await axios.get(
+        `https://solusiadil-api.vercel.app/sertifikat/idsertifikat/${id_sertifikat}`
+      );
+      const sertifikatData = sertifikatResponse.data;
+      const formattedSertifikat = Object.values(sertifikatData)[0];
+      if (!formattedSertifikat) {
+        throw new Error("Data sertifikat tidak ditemukan");
+      }
+      const id_apph = formattedSertifikat.id_apph;
+      const konsultasiResponse = await axios.get(
+        `https://solusiadil-api.vercel.app/konsultasi/`
+      );
+      const konsultasiData = konsultasiResponse.data;
+      const jumlahKonsultasi = Object.values(konsultasiData).filter(
+        konsultasi => konsultasi.id_apph === id_apph && 
+                      (konsultasi.status === 'Selesai' || konsultasi.status === 'Gagal')
+      ).length;
+      const blogsResponse = await axios.get(
+        `https://solusiadil-api.vercel.app/blogs/`
+      );
+      const blogsData = blogsResponse.data;
+      const jumlahBlogs = Object.values(blogsData).filter(
+        blog => blog.id_apph === id_apph && blog.status === 'Diterima'
+      ).length;
+      res.render("sertifikat/cetaksertifikat", { 
+        sertifikat: formattedSertifikat,
+        jumlahKonsultasi: jumlahKonsultasi,
+        jumlahBlogs: jumlahBlogs
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Terjadi kesalahan dalam mengambil data sertifikat.");
     }
   };

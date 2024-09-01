@@ -99,8 +99,8 @@
 												  <div class="get-quote">
 													<% if (sertifikat.status === 'Diajukan' || sertifikat.status === 'Gagal') { %>
 													  <a href="/datasertifikat" class="btn">Kembali</a>
-													<% } else if (sertifikat.status === 'Diterima') { %>
-														<button type="submit" class="btn">Selamat Status Cetak</button>
+													<% } else if (sertifikat.status === 'Berhasil') { %>
+														<a href="/cetaksertifikat?id=<%= sertifikat.id_sertifikat %>" class="btn">Selamat Cetak Sertifikat</a>
 													<% } %>
 												  </div>
 												</div>
