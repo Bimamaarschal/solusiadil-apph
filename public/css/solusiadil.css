@@ -181,6 +181,28 @@ body{
 #scrollUp:hover{
 	background:#06080a;
 }
+
+.bg-perdata {
+    background-color: green;
+    color: white;
+}
+
+.bg-pidana {
+    background-color: red;
+    color: white;
+}
+
+.bg-bisnis {
+    background-color: black;
+    color: white;
+}
+
+.bg-perdata-agama {
+    background-color: blue;
+    color: white;
+}
+
+
 /* Color Plate */
 .color-plate {
 	position: fixed;

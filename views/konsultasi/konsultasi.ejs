@@ -68,9 +68,9 @@
 												<tr>
 													<th>ID Konsultasi</th>
 													<th>Status</th>
+													<th>Jenis</th>
 													<th>Nama Masyarakat</th>
 													<th>Tanggal</th>
-													<th>APPH</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -79,9 +79,14 @@
 												<tr>
 													<td><%= konsultasi.id_konsultasi %></td>
 													<td><%= konsultasi.status %></td>
+													<td class="<%= konsultasi.jenis === 'Perdata' ? 'bg-perdata' : 
+																		konsultasi.jenis === 'Pidana' ? 'bg-pidana' : 
+																		konsultasi.jenis === 'Bisnis' ? 'bg-bisnis' : 
+																		konsultasi.jenis === 'Perdata Agama' ? 'bg-perdata-agama' : '' %>">
+															<%= konsultasi.jenis %>
+														</td>
 													<td><%= konsultasi.nama_mast %></td>
 													<td><%= konsultasi.tanggal %></td>
-													<td><%= konsultasi.id_apph %></td>
 													<td>
 														<form action="<%= konsultasi.status === 'Menunggu' ? '/konsultasidt' : (konsultasi.status === 'Diproses' ? '/konsultasidt2' : '/konsultasilihat') %>"
 															method="get">
